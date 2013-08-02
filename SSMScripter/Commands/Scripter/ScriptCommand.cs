@@ -8,6 +8,7 @@ using Microsoft.SqlServer.Management.UI.VSIntegration;
 using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 using Microsoft.VisualStudio.CommandBars;
 using SSMScripter.Commands;
+using SSMScripter.Properties;
 
 namespace SSMScripter.Commands.Scripter
 {
@@ -42,13 +43,13 @@ namespace SSMScripter.Commands.Scripter
                 Name,
                 "Script...",
                 "Script...",
-                true, /* msobutton */
-                Type.Missing /* bitmap */,
+                false,
+                Resources.ScriptCommandIcon,
                 ref guids,
                 (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled,
-                (int)vsCommandStyle.vsCommandStyleText,
+                (int)vsCommandStyle.vsCommandStylePictAndText,
                 vsCommandControlType.vsCommandControlTypeButton);
-
+            
             command.Bindings = new object[] { "Global::F12" };
 
             command.AddControl(commandBar);
