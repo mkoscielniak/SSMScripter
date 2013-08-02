@@ -10,7 +10,7 @@ SSMScripter will add functionality similar to Visual Studio "Go to definition...
 Download
 ------------
 Enter url below and choose File->Download
-https://docs.google.com/file/d/0BwuKeqv9g3rIdC1YX3U5bW9nVUk/edit?usp=sharing
+https://docs.google.com/file/d/0BwuKeqv9g3rIRXFwOW9VUG1hNVU/edit?usp=sharing
 
 Installation
 -------------
