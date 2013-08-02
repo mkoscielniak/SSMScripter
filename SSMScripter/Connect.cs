@@ -75,7 +75,8 @@ namespace SSMScripter
                 ICommand command = null;
                 if (_commands.TryGetValue(commandName, out command))
                 {
-                    _context.Application.StatusBar.Text = command.Execute() ?? "None";
+                    string result = command.Execute() ?? "None";
+                    _context.Application.StatusBar.Text = String.Format("{0}: {1}", command.Name, result);
                     handled = true;
                 }
             }
