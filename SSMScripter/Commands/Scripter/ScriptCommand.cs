@@ -23,7 +23,7 @@ namespace SSMScripter.Commands.Scripter
             Name = GetType().Name;
             _context = context;
             _parser = new SimpleScripterParser();
-            _scripter = new SimpleScripter();
+            _scripter = new SmoScripter();
         }
 
 
@@ -32,9 +32,9 @@ namespace SSMScripter.Commands.Scripter
 
         public void Bind()
         {
-            CommandBars commandBars = (CommandBars)_context.Application.CommandBars;
-            CommandBar commandBar = (CommandBar)commandBars["SQL Files Editor Context"];
-            Commands2 commands = (Commands2)_context.Application.Commands;
+            var commandBars = (CommandBars)_context.Application.CommandBars;
+            CommandBar commandBar = commandBars["SQL Files Editor Context"];
+            var commands = (Commands2)_context.Application.Commands;
             object[] guids = null;
 
 

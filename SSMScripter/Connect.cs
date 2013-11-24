@@ -106,9 +106,9 @@ namespace SSMScripter
         }
 
 
-        public void OnDisconnection(ext_DisconnectMode RemoveMode, ref Array custom)
+        public void OnDisconnection(ext_DisconnectMode removeMode, ref Array custom)
         {
-            if (RemoveMode == ext_DisconnectMode.ext_dm_HostShutdown)
+            if (removeMode == ext_DisconnectMode.ext_dm_HostShutdown)
                 UnbindCommands();
         }
 

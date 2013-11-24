@@ -51,9 +51,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.RegSvrEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
     </Reference>
     <Reference Include="SqlPackageBase">
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\SqlPackageBase.dll</HintPath>
@@ -75,9 +83,17 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Scripter\IScripterParser.cs" />
     <Compile Include="Commands\Scripter\IScripter.cs" />
+    <Compile Include="Commands\Scripter\SmoAlterableObject.cs" />
+    <Compile Include="Commands\Scripter\SmoScriptableObject.cs" />
     <Compile Include="Commands\Scripter\ScriptCommand.cs" />
     <Compile Include="Commands\Scripter\SimpleScripterParser.cs" />
     <Compile Include="Commands\Scripter\SimpleScripter.cs" />
+    <Compile Include="Commands\Scripter\SmoCreatableObject.cs" />
+    <Compile Include="Commands\Scripter\SmoScriptableObjectFactory.cs" />
+    <Compile Include="Commands\Scripter\SmoScriptingContext.cs" />
+    <Compile Include="Commands\Scripter\SmoObjectMetadata.cs" />
+    <Compile Include="Commands\Scripter\SmoObjectType.cs" />
+    <Compile Include="Commands\Scripter\SmoScripter.cs" />
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,6 +169,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <PropertyGroup>

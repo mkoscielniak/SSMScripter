@@ -11,7 +11,7 @@ using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 namespace SSMScripter.Commands.Scripter
 {
     class SimpleScripter : IScripter
-    {
+    {        
         public bool TryScript(ScripterInput input, out ScripterResult result)
         {
             result = new ScripterResult();
