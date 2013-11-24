@@ -49,13 +49,11 @@ namespace SSMScripter
 
         private void UnbindCommands()
         {
-            Command bindedCommand = null;            
-
             foreach (string commandName in _commands.Keys)
             {
                 try
                 {
-                    bindedCommand = _context.Application.Commands.Item(commandName, -1);
+                    Command bindedCommand = _context.Application.Commands.Item(commandName, -1);
                     bindedCommand.Delete();
                 }
                 catch (ArgumentException ae)

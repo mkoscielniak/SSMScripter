@@ -12,7 +12,7 @@ namespace SSMScripter.Commands.Scripter
         public SqlSmoObject ScriptedObject { get; protected set; }
 
 
-        public SmoScriptableObject(SqlSmoObject obj)
+        protected SmoScriptableObject(SqlSmoObject obj)
         {
             ScriptedObject = obj;
         }

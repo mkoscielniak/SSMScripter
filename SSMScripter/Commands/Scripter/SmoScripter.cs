@@ -74,7 +74,7 @@ namespace SSMScripter.Commands.Scripter
 
             SqlOlapConnectionInfoBase connectionBase = UIConnectionInfoUtil.GetCoreConnectionInfo(connectionInfo.UIConnectionInfo);
 
-            SqlConnectionInfo sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
+            var sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
             sqlConnectionInfo.DatabaseName = databaseName;
 
             IDbConnection connection = sqlConnectionInfo.CreateConnectionObject();

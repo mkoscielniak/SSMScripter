@@ -43,7 +43,7 @@ namespace SSMScripter.Commands.Scripter
             using (IDbConnection connection = CreateDbConnection())
             {
                 connection.Open();
-                ContentType type = ContentType.StoredProcedure;
+                var type = ContentType.StoredProcedure;
                 GetDetails(connection, out type, ref schema, ref name);
                 string content = GetContent(connection, type, schema, name);
                 result = FormatContent(type, schema, name, content);                
@@ -60,7 +60,7 @@ namespace SSMScripter.Commands.Scripter
 
             SqlOlapConnectionInfoBase connectionBase = UIConnectionInfoUtil.GetCoreConnectionInfo(connectionInfo.UIConnectionInfo);
 
-            SqlConnectionInfo sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
+            var sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
             sqlConnectionInfo.DatabaseName = databaseName;
 
             IDbConnection connection = sqlConnectionInfo.CreateConnectionObject();
@@ -93,7 +93,7 @@ namespace SSMScripter.Commands.Scripter
 
         private ContentType ConvertToContentType(string val)
         {
-            ContentType type = ContentType.StoredProcedure;
+            var type = ContentType.StoredProcedure;
             
             switch (val.Trim().ToUpper())
             {
@@ -123,7 +123,7 @@ namespace SSMScripter.Commands.Scripter
 
             string objectName = String.IsNullOrEmpty(schema) ? name : String.Format("[{0}].[{1}]", schema, name);
 
-            string commandBase = @"
+            const string commandBase = @"
                 select 
 	                obj.type OBJ_TYPE	
 	                , sch.name OBJ_SCHEMA
@@ -146,7 +146,7 @@ namespace SSMScripter.Commands.Scripter
             {
                 cmd.CommandText = FormatGetContentCommand(schema, name);
                 IDataReader reader = cmd.ExecuteReader();
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 
                 while (reader.Read())
                     sb.Append(reader.GetString(0));
@@ -165,7 +165,7 @@ namespace SSMScripter.Commands.Scripter
 
             string objectName = String.IsNullOrEmpty(schema) ? name : String.Format("[{0}].[{1}]", schema, name);
 
-            string commandBase = @"
+            const string commandBase = @"
                 select text
                 from syscomments
                 where id = (select object_id('{0}'))";

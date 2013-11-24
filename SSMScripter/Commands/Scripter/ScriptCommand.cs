@@ -14,9 +14,9 @@ namespace SSMScripter.Commands.Scripter
 {
     class ScriptCommand : ICommand
     {
-        private Context _context;
-        private IScripterParser _parser;
-        private IScripter _scripter;
+        private readonly Context _context;
+        private readonly IScripterParser _parser;
+        private readonly IScripter _scripter;
 
         public ScriptCommand(Context context)
         {
@@ -67,14 +67,13 @@ namespace SSMScripter.Commands.Scripter
             if (!_parser.TryParse(parserInput, out parserResult))
                 return parserResult.Error;
 
-            ScripterInput scripterInput = new ScripterInput()
+            var scripterInput = new ScripterInput()
             {
                 Schema = parserResult.Schema,
                 Name = parserResult.Name
             };
 
-            ScripterResult scripterResult = null;
-            string status = String.Empty;
+            ScripterResult scripterResult = null;            
 
             if (!_scripter.TryScript(scripterInput, out scripterResult))
                 return scripterResult.Error;
@@ -88,7 +87,7 @@ namespace SSMScripter.Commands.Scripter
         private void DisplayResult(string content)
         {
             ServiceCache.ScriptFactory.CreateNewBlankScript(ScriptType.Sql);
-            TextDocument document = (TextDocument)((DTE2)ServiceCache.ExtensibilityModel).ActiveDocument.Object(String.Empty);
+            var document = (TextDocument)((DTE2)ServiceCache.ExtensibilityModel).ActiveDocument.Object(String.Empty);
             document.EndPoint.CreateEditPoint().Insert(content);
         }
 
@@ -101,7 +100,7 @@ namespace SSMScripter.Commands.Scripter
             if (document == null)
                 return false;
 
-            TextSelection textSelection = (TextSelection)_context.Application.ActiveDocument.Selection;
+            var textSelection = (TextSelection)_context.Application.ActiveDocument.Selection;
 
             VirtualPoint point = textSelection.ActivePoint;
             EditPoint editPoint = point.CreateEditPoint();
