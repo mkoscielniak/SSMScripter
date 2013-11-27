@@ -8,6 +8,7 @@ using Microsoft.SqlServer.Management.UI.VSIntegration;
 using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 using Microsoft.VisualStudio.CommandBars;
 using SSMScripter.Commands;
+using SSMScripter.Config;
 using SSMScripter.Properties;
 
 namespace SSMScripter.Commands.Scripter
@@ -55,6 +56,7 @@ namespace SSMScripter.Commands.Scripter
             command.AddControl(commandBar);
         }
 
+        
 
         public string Execute()
         {
@@ -70,7 +72,7 @@ namespace SSMScripter.Commands.Scripter
             var scripterInput = new ScripterInput()
             {
                 Schema = parserResult.Schema,
-                Name = parserResult.Name
+                Name = parserResult.Name,                
             };
 
             ScripterResult scripterResult = null;            

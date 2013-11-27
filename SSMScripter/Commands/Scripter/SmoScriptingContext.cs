@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
+using SSMScripter.Config;
 
 namespace SSMScripter.Commands.Scripter
 {
@@ -16,14 +17,18 @@ namespace SSMScripter.Commands.Scripter
         public ServerConnection Connection { get; protected set; }
         public Server Server { get; protected set; }
         public Database Database { get; protected set; }
-
+        public Options Options { get; protected set; }
 
         public SmoScriptingContext(IDbConnection connection, SmoObjectMetadata metadata)
         {
             Connection = new ServerConnection((SqlConnection)connection);
             Server = new Server(Connection);
             Database = Server.Databases[Connection.DatabaseName];
+            
             Metadata = metadata;
+
+            Options = new Options();
+            Options.Load();
         }
     }
 }

@@ -35,9 +35,13 @@ namespace SSMScripter.Commands.Scripter
         {
             var output = new StringCollection();
 
-            AddDatabaseContext(output, ctx);
-            AddBatchSeparator(output, ctx);
-            AddEmptyLine(output);
+            if (ctx.Options.ScriptDatabaseContext)
+            {
+                AddDatabaseContext(output, ctx);
+                AddBatchSeparator(output, ctx);
+                AddEmptyLine(output);
+            }
+
             AddAnsiNulls(output, ctx);
             AddBatchSeparator(output, ctx);
             AddQuotedIdentifier(output, ctx);

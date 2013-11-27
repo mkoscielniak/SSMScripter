@@ -13,14 +13,14 @@ namespace SSMScripter.Commands.Scripter
             : base(obj)
         {
         }
-
+        
 
         public override StringCollection Script(SmoScriptingContext context)
         {
             var scripter = new Smo.Scripter(context.Server);
             Smo.ScriptingOptions options = scripter.Options;
 
-            options.IncludeDatabaseContext = true;
+            options.IncludeDatabaseContext = context.Options.ScriptDatabaseContext;
             
             StringCollection scriptingResult = scripter.Script(new[] {ScriptedObject});
             
