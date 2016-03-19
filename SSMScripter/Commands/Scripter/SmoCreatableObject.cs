@@ -29,7 +29,8 @@ namespace SSMScripter.Commands.Scripter
             foreach (string scriptedBatch in scriptingResult)
             {
                 result.Add(scriptedBatch);
-                AddEmptyLine(result);
+                AddLineEnding(result);
+                AddLineEnding(result);
             }
 
             return result;

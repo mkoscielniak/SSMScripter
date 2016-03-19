@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using Microsoft.CSharp.RuntimeBinder;
+//using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -39,14 +39,12 @@ namespace SSMScripter.Commands.Scripter
             {
                 AddDatabaseContext(output, ctx);
                 AddBatchSeparator(output, ctx);
-                AddEmptyLine(output);
             }
 
             AddAnsiNulls(output, ctx);
             AddBatchSeparator(output, ctx);
             AddQuotedIdentifier(output, ctx);
             AddBatchSeparator(output, ctx);
-            AddEmptyLine(output);
             AddHeader(output, obj);
             AddBody(output, obj);
 
@@ -58,14 +56,20 @@ namespace SSMScripter.Commands.Scripter
         {
             bool? value = ctx.Metadata.QuotedIdentifierStatus;
             if (value.HasValue)
-                output.Add(String.Format("SET QUOTED_IDENTIFIER {0}", value.Value ? "ON" : "OFF"));            
+            {
+                output.Add(String.Format("SET QUOTED_IDENTIFIER {0}", value.Value ? "ON" : "OFF"));
+                AddLineEnding(output);
+            }
         }
 
         private void AddAnsiNulls(StringCollection output, SmoScriptingContext ctx)
         {
             bool? value = ctx.Metadata.AnsiNullsStatus;
-            if(value.HasValue)
-                output.Add(String.Format("SET ANSI_NULLS {0}", value.Value ? "ON" : "OFF"));            
+            if (value.HasValue)
+            {
+                output.Add(String.Format("SET ANSI_NULLS {0}", value.Value ? "ON" : "OFF"));
+                AddLineEnding(output);
+            }
         }
 
 
@@ -85,6 +89,7 @@ namespace SSMScripter.Commands.Scripter
         {
             string batch = String.Format("USE [{0}]", ctx.Connection.DatabaseName);
             output.Add(batch);
+            AddLineEnding(output);
         }
     }
 }

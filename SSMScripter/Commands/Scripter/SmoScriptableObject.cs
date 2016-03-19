@@ -24,12 +24,13 @@ namespace SSMScripter.Commands.Scripter
         public void AddBatchSeparator(StringCollection output, SmoScriptingContext ctx)
         {
             output.Add(ctx.Connection.BatchSeparator);
+            AddLineEnding(output);
         }
 
 
-        public void AddEmptyLine(StringCollection output)
+        public void AddLineEnding(StringCollection output)
         {
-            output.Add(String.Empty);
+            output.Add(Environment.NewLine);
         }
 
     }

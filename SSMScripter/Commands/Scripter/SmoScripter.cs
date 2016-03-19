@@ -58,7 +58,7 @@ namespace SSMScripter.Commands.Scripter
                 var builder = new StringBuilder();
 
                 foreach (string batch in batches)
-                    builder.AppendLine(batch);
+                    builder.Append(batch);
 
                 result = builder.ToString();
             }
