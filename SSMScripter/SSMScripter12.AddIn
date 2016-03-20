@@ -16,7 +16,7 @@
   <ToolsOptionsPage>
     <Category Name="SSMScripter">
       <SubCategory Name="General">
-        <Assembly>SSMScripter.dll</Assembly>
+        <Assembly>SSMScripter12.dll</Assembly>
         <FullClassName>SSMScripter.Config.OptionsControl</FullClassName>
       </SubCategory>
     </Category>
