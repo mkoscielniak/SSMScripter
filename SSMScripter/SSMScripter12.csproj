@@ -10,30 +10,28 @@
     <StartupObject>
     </StartupObject>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>SSMScripter</AssemblyName>
-    <DeploymentDirectory>.\bin\</DeploymentDirectory>
+    <AssemblyName>SSMScripter12</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DeploymentDirectory>.\bin\12</DeploymentDirectory>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>.\bin\Debug\</OutputPath>
+    <OutputPath>.\bin\12\Debug\</OutputPath>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <IncrementalBuild>false</IncrementalBuild>
-    <DocumentationFile>SSMScripter.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
     <Optimize>true</Optimize>
-    <OutputPath>.\bin\Release\</OutputPath>
+    <OutputPath>.\bin\12\Release\</OutputPath>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <IncrementalBuild>false</IncrementalBuild>
-    <DocumentationFile>SSMScripter.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>SSMScripter</RootNamespace>
@@ -170,7 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon.png" />
-    <Content Include="SSMScripter.AddIn" />
+    <Content Include="SSMScripter12.AddIn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Config\OptionsControl.resx">
