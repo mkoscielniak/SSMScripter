@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SSMScripter")]
-[assembly: AssemblyCopyright("reVis (c) 2013")]
+[assembly: AssemblyCopyright("reVis (c) 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
