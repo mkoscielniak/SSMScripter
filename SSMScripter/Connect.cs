@@ -26,7 +26,7 @@ namespace SSMScripter
             _context = new Context((DTE2)application, (AddIn)addInInst);
             _commands = CreateCommands().ToDictionary(cmd => String.Format("{0}.{1}", _context.AddIn.ProgID, cmd.Name));
 
-            if (connectMode == ext_ConnectMode.ext_cm_UISetup)
+            if (connectMode == ext_ConnectMode.ext_cm_Startup)
             {
                 UnbindCommands();
                 BindCommands();
