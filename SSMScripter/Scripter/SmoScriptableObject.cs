@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace SSMScripter.Commands.Scripter
+namespace SSMScripter.Scripter
 {
     public abstract class SmoScriptableObject
     {

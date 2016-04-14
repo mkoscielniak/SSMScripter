@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SSMScripter.Commands.Scripter
+﻿namespace SSMScripter.Scripter
 {
     interface IScripterParser
     {

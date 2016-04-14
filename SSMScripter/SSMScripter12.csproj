@@ -80,19 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\Scripter\IScripterParser.cs" />
-    <Compile Include="Commands\Scripter\IScripter.cs" />
-    <Compile Include="Commands\Scripter\SmoAlterableObject.cs" />
-    <Compile Include="Commands\Scripter\SmoScriptableObject.cs" />
-    <Compile Include="Commands\Scripter\ScriptCommand.cs" />
-    <Compile Include="Commands\Scripter\SimpleScripterParser.cs" />
-    <Compile Include="Commands\Scripter\SimpleScripter.cs" />
-    <Compile Include="Commands\Scripter\SmoCreatableObject.cs" />
-    <Compile Include="Commands\Scripter\SmoScriptableObjectFactory.cs" />
-    <Compile Include="Commands\Scripter\SmoScriptingContext.cs" />
-    <Compile Include="Commands\Scripter\SmoObjectMetadata.cs" />
-    <Compile Include="Commands\Scripter\SmoObjectType.cs" />
-    <Compile Include="Commands\Scripter\SmoScripter.cs" />
+    <Compile Include="Commands\ScriptCommand.cs" />
     <Compile Include="Config\Options.cs" />
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
@@ -109,6 +97,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scripter\IScripter.cs" />
+    <Compile Include="Scripter\IScripterParser.cs" />
+    <Compile Include="Scripter\SimpleScripterParser.cs" />
+    <Compile Include="Scripter\SmoAlterableObject.cs" />
+    <Compile Include="Scripter\SmoCreatableObject.cs" />
+    <Compile Include="Scripter\SmoObjectMetadata.cs" />
+    <Compile Include="Scripter\SmoObjectType.cs" />
+    <Compile Include="Scripter\SmoScriptableObject.cs" />
+    <Compile Include="Scripter\SmoScriptableObjectFactory.cs" />
+    <Compile Include="Scripter\SmoScripter.cs" />
+    <Compile Include="Scripter\SmoScriptingContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="EnvDTE">

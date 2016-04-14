@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using Microsoft.SqlServer.Management.Common;
-using Smo = Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.UI.ConnectionDlg;
 using Microsoft.SqlServer.Management.UI.VSIntegration;
 using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
-using System.Collections.Specialized;
 
-namespace SSMScripter.Commands.Scripter
+namespace SSMScripter.Scripter
 {
     public class SmoScripter : IScripter
     {

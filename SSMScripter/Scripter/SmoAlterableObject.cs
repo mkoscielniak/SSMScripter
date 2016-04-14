@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//using Microsoft.CSharp.RuntimeBinder;
+using System;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-//using Microsoft.CSharp.RuntimeBinder;
-using Microsoft.SqlServer.Management.Sdk.Sfc;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace SSMScripter.Commands.Scripter
+namespace SSMScripter.Scripter
 {
     public class SmoAlterableObject : SmoScriptableObject
     {        

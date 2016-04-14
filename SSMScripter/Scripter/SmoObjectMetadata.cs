@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 
-namespace SSMScripter.Commands.Scripter
+namespace SSMScripter.Scripter
 {
     public class SmoObjectMetadata
     {

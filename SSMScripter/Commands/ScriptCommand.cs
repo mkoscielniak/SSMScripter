@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.SqlServer.Management.UI.VSIntegration;
 using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 using Microsoft.VisualStudio.CommandBars;
-using SSMScripter.Commands;
-using SSMScripter.Config;
 using SSMScripter.Properties;
+using SSMScripter.Scripter;
 
-namespace SSMScripter.Commands.Scripter
+namespace SSMScripter.Commands
 {
     class ScriptCommand : ICommand
     {

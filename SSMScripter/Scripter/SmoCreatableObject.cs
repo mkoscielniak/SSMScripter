@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using Smo = Microsoft.SqlServer.Management.Smo;
+﻿using System.Collections.Specialized;
 
-namespace SSMScripter.Commands.Scripter
+namespace SSMScripter.Scripter
 {
     public class SmoCreatableObject : SmoScriptableObject
     {
-        public SmoCreatableObject(Smo.SqlSmoObject obj)
+        public SmoCreatableObject(Microsoft.SqlServer.Management.Smo.SqlSmoObject obj)
             : base(obj)
         {
         }
@@ -17,8 +12,8 @@ namespace SSMScripter.Commands.Scripter
 
         public override StringCollection Script(SmoScriptingContext context)
         {
-            var scripter = new Smo.Scripter(context.Server);
-            Smo.ScriptingOptions options = scripter.Options;
+            var scripter = new Microsoft.SqlServer.Management.Smo.Scripter(context.Server);
+            Microsoft.SqlServer.Management.Smo.ScriptingOptions options = scripter.Options;
 
             options.IncludeDatabaseContext = context.Options.ScriptDatabaseContext;
             
