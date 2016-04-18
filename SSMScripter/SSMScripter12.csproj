@@ -85,13 +85,15 @@
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Context.cs" />
     <Compile Include="Config\OptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Config\OptionsControl.Designer.cs">
       <DependentUpon>OptionsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Integration\Context.cs" />
+    <Compile Include="Integration\EditedLine.cs" />
+    <Compile Include="Integration\Editor.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

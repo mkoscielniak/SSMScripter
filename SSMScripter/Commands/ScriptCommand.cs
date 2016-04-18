@@ -4,6 +4,7 @@ using EnvDTE80;
 using Microsoft.SqlServer.Management.UI.VSIntegration;
 using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 using Microsoft.VisualStudio.CommandBars;
+using SSMScripter.Integration;
 using SSMScripter.Properties;
 using SSMScripter.Scripter;
 
@@ -56,12 +57,17 @@ namespace SSMScripter.Commands
 
         public string Execute()
         {
-            ScripterParserInput parserInput = null;
+            Editor editor = _context.GetCurrentEditor();
+            EditedLine line = editor.GetEditedLine();
+            
+            ScripterParserInput parserInput = new ScripterParserInput
+            {
+                ContentLine = line.Line,
+                Index = line.CaretPos
+            };
+
             ScripterParserResult parserResult = null;
-
-            if (!TryGetParserInput(out parserInput))
-                return "Cannot find any input";
-
+            
             if (!_parser.TryParse(parserInput, out parserResult))
                 return parserResult.Error;
 
@@ -76,37 +82,10 @@ namespace SSMScripter.Commands
             if (!_scripter.TryScript(scripterInput, out scripterResult))
                 return scripterResult.Error;
 
-            DisplayResult(scripterResult.Text);
+            Editor newEditor = _context.CreateNewCurrentEditor();
+            newEditor.SetContent(scripterResult.Text);
 
             return "Success";
-        }
-
-
-        private void DisplayResult(string content)
-        {
-            ServiceCache.ScriptFactory.CreateNewBlankScript(ScriptType.Sql);
-            var document = (TextDocument)((DTE2)ServiceCache.ExtensibilityModel).ActiveDocument.Object(String.Empty);
-            document.EndPoint.CreateEditPoint().Insert(content);
-        }
-
-
-        private bool TryGetParserInput(out ScripterParserInput input)
-        {
-            input = new ScripterParserInput() { ContentLine = String.Empty, Index = 0 };
-
-            Document document = _context.Application.ActiveDocument;
-            if (document == null)
-                return false;
-
-            var textSelection = (TextSelection)_context.Application.ActiveDocument.Selection;
-
-            VirtualPoint point = textSelection.ActivePoint;
-            EditPoint editPoint = point.CreateEditPoint();
-
-            input.ContentLine = editPoint.GetLines(point.Line, point.Line + 1);
-            input.Index = point.LineCharOffset - 1;
-
-            return true;
         }
     }
 }
