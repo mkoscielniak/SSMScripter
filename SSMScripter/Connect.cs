@@ -36,7 +36,9 @@ namespace SSMScripter
 
         private IEnumerable<ICommand> CreateCommands()
         {
-            yield return new ScriptCommand(_context);
+            IScripterParser parser = new SimpleScripterParser();
+            IScripter scripter = new SmoScripter();
+            yield return new ScriptCommand(_context, parser, scripter);
         }
 
 

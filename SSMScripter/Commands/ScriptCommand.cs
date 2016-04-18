@@ -15,12 +15,12 @@ namespace SSMScripter.Commands
         private readonly IScripterParser _parser;
         private readonly IScripter _scripter;
 
-        public ScriptCommand(Context context)
+        public ScriptCommand(Context context, IScripterParser parser, IScripter scripter)
         {
             Name = GetType().Name;
             _context = context;
-            _parser = new SimpleScripterParser();
-            _scripter = new SmoScripter();
+            _parser = parser;
+            _scripter = scripter;
         }
 
 
