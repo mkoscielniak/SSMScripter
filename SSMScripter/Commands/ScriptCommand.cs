@@ -31,10 +31,8 @@ namespace SSMScripter.Commands
         public void Bind()
         {
             var commandBars = (CommandBars)_context.Application.CommandBars;
-            CommandBar commandBar = commandBars["SQL Files Editor Context"];
             var commands = (Commands2)_context.Application.Commands;
             object[] guids = null;
-
 
             Command command = commands.AddNamedCommand2(
                 _context.AddIn,
@@ -47,10 +45,14 @@ namespace SSMScripter.Commands
                 (int)vsCommandStatus.vsCommandStatusSupported + (int)vsCommandStatus.vsCommandStatusEnabled,
                 (int)vsCommandStyle.vsCommandStylePictAndText,
                 vsCommandControlType.vsCommandControlTypeButton);
-            
-            command.Bindings = new object[] { "Global::F12" };
 
-            command.AddControl(commandBar);
+            command.Bindings = new object[] { "SQL Query Editor::F12" };
+
+            CommandBar resultGridCommandBar = commandBars["SQL Results Grid Tab Context"];
+            command.AddControl(resultGridCommandBar);
+
+            CommandBar sqlEditorCommandBar = commandBars["SQL Files Editor Context"];
+            command.AddControl(sqlEditorCommandBar);
         }
 
         
@@ -58,26 +60,23 @@ namespace SSMScripter.Commands
         public string Execute()
         {
             Editor editor = _context.GetCurrentEditor();
-            EditedLine line = editor.GetEditedLine();
-            
-            ScripterParserInput parserInput = new ScripterParserInput
-            {
-                ContentLine = line.Line,
-                Index = line.CaretPos
-            };
 
+            ScripterParserInput parserInput = null;
             ScripterParserResult parserResult = null;
-            
+
+            if (!TryGetParserInput(editor, out parserInput))
+                return "Cannot find any input";
+
             if (!_parser.TryParse(parserInput, out parserResult))
                 return parserResult.Error;
 
             var scripterInput = new ScripterInput()
             {
                 Schema = parserResult.Schema,
-                Name = parserResult.Name,                
+                Name = parserResult.Name,
             };
 
-            ScripterResult scripterResult = null;            
+            ScripterResult scripterResult = null;
 
             if (!_scripter.TryScript(scripterInput, out scripterResult))
                 return scripterResult.Error;
@@ -86,6 +85,36 @@ namespace SSMScripter.Commands
             newEditor.SetContent(scripterResult.Text);
 
             return "Success";
+        }
+
+
+        private bool TryGetParserInput(Editor editor, out ScripterParserInput input)
+        {
+            input = null;
+
+            string value = String.Empty;
+            int caret = 0;
+
+            ResultGrid grid = editor.GetFocusedResultGrid();
+
+            if (grid != null)
+            {
+                value = grid.GetSelectedValue();
+                caret = 0;
+            }
+            else
+            {
+                EditedLine line = editor.GetEditedLine();
+                value = line.Line;
+                caret = line.CaretPos;
+            }
+
+            input = new ScripterParserInput()
+            {
+                ContentLine = value, Index = caret
+            };
+
+            return true;
         }
     }
 }
