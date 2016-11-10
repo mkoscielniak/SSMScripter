@@ -6,7 +6,7 @@ using Microsoft.SqlServer.Management.UI.Grid;
 
 namespace SSMScripter.Integration
 {
-    class ResultGrid
+    class ResultGrid : IResultGrid
     {
         private readonly IGridControl _grid;
 

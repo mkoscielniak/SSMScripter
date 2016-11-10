@@ -83,8 +83,11 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\ScriptCommand.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="Integration\IHostContext.cs" />
+    <Compile Include="Integration\IEditor.cs" />
+    <Compile Include="Integration\IResultGrid.cs" />
+    <Compile Include="ScriptCommand.cs" />
     <Compile Include="Config\Options.cs" />
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
@@ -95,17 +98,19 @@
     <Compile Include="Config\OptionsControl.Designer.cs">
       <DependentUpon>OptionsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Integration\Context.cs" />
+    <Compile Include="Integration\DTE\HostContext.cs" />
     <Compile Include="Integration\EditedLine.cs" />
-    <Compile Include="Integration\Editor.cs" />
-    <Compile Include="Integration\ResultGrid.cs" />
+    <Compile Include="Integration\DTE\Editor.cs" />
+    <Compile Include="Integration\DTE\ResultGrid.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Scripter\IScripter.cs" />
+    <Compile Include="Scripter\IScripterFactory.cs" />
     <Compile Include="Scripter\IScripterParser.cs" />
+    <Compile Include="Scripter\ScriptAction.cs" />
     <Compile Include="Scripter\SimpleScripterParser.cs" />
     <Compile Include="Scripter\SmoAlterableObject.cs" />
     <Compile Include="Scripter\SmoCreatableObject.cs" />

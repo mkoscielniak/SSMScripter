@@ -5,27 +5,26 @@ using System.Text;
 using EnvDTE;
 using EnvDTE80;
 using Extensibility;
-using SSMScripter.Commands;
 using SSMScripter.Integration;
 using SSMScripter.Scripter;
+using SSMScripter.Integration.DTE;
 
 namespace SSMScripter
 {
     public class Connect : IDTExtensibility2, IDTCommandTarget
     {
-        private Context _context;
+        private DTE2 _app;
+        private AddIn _addin;
         private Dictionary<string, ICommand> _commands;
-
-
-        public Connect()
-        {
-        }
-
+        
 
         public void OnConnection(object application, ext_ConnectMode connectMode, object addInInst, ref Array custom)
         {
-            _context = new Context((DTE2)application, (AddIn)addInInst);
-            _commands = CreateCommands().ToDictionary(cmd => String.Format("{0}.{1}", _context.AddIn.ProgID, cmd.Name));
+            _app = (DTE2)application;
+            _addin = (AddIn)addInInst;
+            
+            _commands = CreateCommands()
+                .ToDictionary(cmd => String.Format("{0}.{1}", _addin.ProgID, cmd.Name));
 
             if (connectMode == ext_ConnectMode.ext_cm_Startup)
             {
@@ -37,9 +36,12 @@ namespace SSMScripter
 
         private IEnumerable<ICommand> CreateCommands()
         {
+            IHostContext hostCtx = new HostContext(_app);
+
             IScripterParser parser = new SimpleScripterParser();
             IScripter scripter = new SmoScripter();
-            yield return new ScriptCommand(_context, parser, scripter);
+            ScriptAction scriptAction = new ScriptAction(hostCtx, scripter, parser);
+            yield return new ScriptCommand(_app, _addin, scriptAction);
         }
 
 
@@ -56,7 +58,7 @@ namespace SSMScripter
             {
                 try
                 {
-                    Command bindedCommand = _context.Application.Commands.Item(commandName, -1);
+                    Command bindedCommand = _app.Commands.Item(commandName, -1);
                     bindedCommand.Delete();
                 }
                 catch (ArgumentException ae)
@@ -77,7 +79,7 @@ namespace SSMScripter
                 if (_commands.TryGetValue(commandName, out command))
                 {
                     string result = command.Execute() ?? "None";
-                    _context.Application.StatusBar.Text = String.Format("{0}: {1}", command.Name, result);
+                    _app.StatusBar.Text = String.Format("{0}: {1}", command.Name, result);
                     handled = true;
                 }
             }

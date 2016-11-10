@@ -1,49 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.SqlServer.Management.UI.Grid;
 using Microsoft.SqlServer.Management.UI.VSIntegration;
 using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
+using SSMScripter.Integration;
+using System.Reflection;
+using Microsoft.SqlServer.Management.UI.Grid;
+using System.Data;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.UI.ConnectionDlg;
 
-namespace SSMScripter.Integration
+namespace SSMScripter.Integration.DTE
 {
-    class Editor
+    class HostContext : IHostContext
     {
-        private TextDocument _document;
-
-        public Editor(TextDocument document)
+        public DTE2 _app;
+        
+        public HostContext(DTE2 app)
         {
-            _document = document;
+            _app = app;
         }
 
 
-        public EditedLine GetEditedLine()
+        public IEditor GetCurrentEditor()
         {
-            TextSelection textSelection = _document.Selection;
-
-            VirtualPoint point = textSelection.ActivePoint;
-            EditPoint editPoint = point.CreateEditPoint();
-
-            string line = editPoint.GetLines(point.Line, point.Line + 1);
-            int caret = point.LineCharOffset - 1;
-
-            return new EditedLine(line, caret);
+            TextDocument document = (TextDocument) _app.ActiveDocument.Object("");
+            return new Editor(document);
         }
 
 
-        public void SetContent(string content)
+        public IEditor GetNewEditor()
         {
-            EditPoint start = _document.CreateEditPoint(_document.StartPoint);
-            start.Delete(_document.EndPoint);
-            start.Insert(content);
+            ServiceCache.ScriptFactory.CreateNewBlankScript(ScriptType.Sql);
+            return GetCurrentEditor();
         }
 
 
-        public ResultGrid GetFocusedResultGrid()
+        public IResultGrid GetFocusedResultGrid()
         {
             BindingFlags bindingFlags = BindingFlags.NonPublic | BindingFlags.Instance;
 
@@ -75,6 +71,22 @@ namespace SSMScripter.Integration
                 return null;
 
             return new ResultGrid(grid);
+        }
+
+
+        public IDbConnection CloneCurrentConnection()
+        {
+            CurrentlyActiveWndConnectionInfo connectionInfo = ServiceCache.ScriptFactory.CurrentlyActiveWndConnectionInfo;
+            string databaseName = connectionInfo.UIConnectionInfo.AdvancedOptions["DATABASE"];
+
+            SqlOlapConnectionInfoBase connectionBase = UIConnectionInfoUtil.GetCoreConnectionInfo(connectionInfo.UIConnectionInfo);
+
+            var sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
+            sqlConnectionInfo.DatabaseName = databaseName;
+
+            IDbConnection connection = sqlConnectionInfo.CreateConnectionObject();
+
+            return connection;
         }
     }
 }
