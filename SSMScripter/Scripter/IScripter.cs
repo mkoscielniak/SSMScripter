@@ -3,7 +3,7 @@ using System.Data;
 
 namespace SSMScripter.Scripter
 {
-    interface IScripter
+    public interface IScripter
     {
         string Script(IDbConnection connection, ScripterInput input);
     }

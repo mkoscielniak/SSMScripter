@@ -15,7 +15,7 @@ using Microsoft.SqlServer.Management.UI.ConnectionDlg;
 
 namespace SSMScripter.Integration.DTE
 {
-    class HostContext : IHostContext
+    public class HostContext : IHostContext
     {
         public DTE2 _app;
         

@@ -1,17 +1,17 @@
 ﻿namespace SSMScripter.Scripter
 {
-    interface IScripterParser
+    public interface IScripterParser
     {
         bool TryParse(ScripterParserInput input, out ScripterParserResult result);
     }
 
-    class ScripterParserInput
+    public class ScripterParserInput
     {
         public string ContentLine { get; set; }
         public int Index { get; set; }
     }
 
-    class ScripterParserResult
+    public class ScripterParserResult
     {
         public string Text { get; set; }
         public string Schema { get; set; }

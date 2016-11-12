@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SSMScripter.Integration
 {
-    class EditedLine
+    public class EditedLine
     {
         public string Line { get; protected set; }
         public int CaretPos { get; protected set; }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SSMScripter.Scripter
 {
-    class ScriptAction
+    public class ScriptAction
     {
         private IHostContext _hostCtx;
         private IScripter _scripter;

@@ -11,7 +11,7 @@ using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 
 namespace SSMScripter.Integration.DTE
 {
-    class Editor : IEditor
+    public class Editor : IEditor
     {
         private TextDocument _document;
 

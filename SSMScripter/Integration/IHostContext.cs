@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SSMScripter.Integration
 {
-    interface IHostContext
+    public interface IHostContext
     {
         IEditor GetCurrentEditor();
 

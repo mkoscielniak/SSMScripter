@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SSMScripter.Integration
 {
-    interface IEditor
+    public interface IEditor
     {
         EditedLine GetEditedLine();
 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SSMScripter.Scripter
 {
-    interface IScripterFactory
+    public interface IScripterFactory
     {
         IScripter CreateScripter(IDbConnection connection);
     }

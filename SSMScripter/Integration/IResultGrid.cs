@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SSMScripter.Integration
 {
-    interface IResultGrid
+    public interface IResultGrid
     {
         string GetSelectedValue();
     }

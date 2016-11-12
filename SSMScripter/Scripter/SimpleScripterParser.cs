@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SSMScripter.Scripter
 {
-    class SimpleScripterParser : IScripterParser
+    public class SimpleScripterParser : IScripterParser
     {        
         private readonly char[] _additionalChars = new char[] { '[', ']', '.', '_' };               
 
