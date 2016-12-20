@@ -66,24 +66,14 @@ namespace SSMScripter16.VSPackage
         {
             Instance = new ScriptCommand(package);
         }
-
-
-        private void EnsurePluginReady()
-        {
-            string packKeyPath = String.Format(@"Packages\{{{0}}}", ScriptCommandPackage.PackageGuidString);
-            using (RegistryKey key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true))
-            using (RegistryKey packKey = key.CreateSubKey(packKeyPath))
-                packKey.SetValue("SkipLoading", 1, RegistryValueKind.DWord);
-        }
-
+        
         
         private void MenuItemCallback(object sender, EventArgs e)
         {
             string result = String.Empty;
 
             try
-            {
-                EnsurePluginReady();
+            {                
                 result = _scriptAction.Execute();
             }
             catch(Exception ex)

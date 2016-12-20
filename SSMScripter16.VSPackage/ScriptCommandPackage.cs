@@ -15,6 +15,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace SSMScripter16.VSPackage
 {    
@@ -38,6 +39,24 @@ namespace SSMScripter16.VSPackage
         {
             ScriptCommand.Initialize(this);
             base.Initialize();
+
+            Timer timer = new Timer();
+            timer.Tick += (o, e) =>
+            {
+                timer.Stop();
+                AddSkipLoadingEntry();
+            };
+            timer.Interval = 1000;
+            timer.Start();
+        }
+
+
+        private void AddSkipLoadingEntry()
+        {
+            string packKeyPath = String.Format(@"Packages\{{{0}}}", ScriptCommandPackage.PackageGuidString);
+            using (RegistryKey key = VSRegistry.RegistryRoot(__VsLocalRegistryType.RegType_UserSettings, true))
+            using (RegistryKey packKey = key.CreateSubKey(packKeyPath))
+                packKey.SetValue("SkipLoading", 1, RegistryValueKind.DWord);
         }
     }
 }
