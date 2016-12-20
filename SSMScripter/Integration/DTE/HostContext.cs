@@ -18,7 +18,7 @@ namespace SSMScripter.Integration.DTE
     public class HostContext : IHostContext
     {
         public DTE2 _app;
-        
+
         public HostContext(DTE2 app)
         {
             _app = app;
@@ -27,7 +27,11 @@ namespace SSMScripter.Integration.DTE
 
         public IEditor GetCurrentEditor()
         {
-            TextDocument document = (TextDocument) _app.ActiveDocument.Object("");
+            Document activeDocument = _app.ActiveDocument;
+            if (activeDocument == null)
+                return null;
+
+            TextDocument document = (TextDocument)activeDocument.Object("");
             return new Editor(document);
         }
 
@@ -51,10 +55,13 @@ namespace SSMScripter.Integration.DTE
                 .GetMethod("GetCurrentlyActiveFrameDocView", bindingFlags)
                 .Invoke(scriptFactor, new object[] { monitorSelection, false, null });
 
-            object resultsControl = editorControl
-                .GetType()
-                .GetField("m_sqlResultsControl", bindingFlags)
-                .GetValue(editorControl);
+            FieldInfo resultControlField = editorControl.GetType()
+                .GetField("m_sqlResultsControl", bindingFlags);
+
+            if (resultControlField == null)
+                return null;
+
+            object resultsControl = resultControlField.GetValue(editorControl);
 
             object resultsTabPage = resultsControl
                 .GetType()
