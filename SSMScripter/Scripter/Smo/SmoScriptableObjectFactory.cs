@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace SSMScripter.Scripter
+namespace SSMScripter.Scripter.Smo
 {
     public class SmoScriptableObjectFactory
     {

@@ -112,14 +112,14 @@
     <Compile Include="Scripter\IScripterParser.cs" />
     <Compile Include="Scripter\ScriptAction.cs" />
     <Compile Include="Scripter\SimpleScripterParser.cs" />
-    <Compile Include="Scripter\SmoAlterableObject.cs" />
-    <Compile Include="Scripter\SmoCreatableObject.cs" />
-    <Compile Include="Scripter\SmoObjectMetadata.cs" />
-    <Compile Include="Scripter\SmoObjectType.cs" />
-    <Compile Include="Scripter\SmoScriptableObject.cs" />
-    <Compile Include="Scripter\SmoScriptableObjectFactory.cs" />
-    <Compile Include="Scripter\SmoScripter.cs" />
-    <Compile Include="Scripter\SmoScriptingContext.cs" />
+    <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
+    <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
+    <Compile Include="Scripter\Smo\SmoObjectMetadata.cs" />
+    <Compile Include="Scripter\Smo\SmoObjectType.cs" />
+    <Compile Include="Scripter\Smo\SmoScriptableObject.cs" />
+    <Compile Include="Scripter\Smo\SmoScriptableObjectFactory.cs" />
+    <Compile Include="Scripter\Smo\SmoScripter.cs" />
+    <Compile Include="Scripter\Smo\SmoScriptingContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="EnvDTE">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace SSMScripter.Scripter
+namespace SSMScripter.Scripter.Smo
 {
     public class SmoObjectMetadata
     {

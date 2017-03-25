@@ -14,6 +14,7 @@ using SSMScripter.Integration;
 using SSMScripter.Integration.DTE;
 using EnvDTE;
 using SSMScripter.Scripter;
+using SSMScripter.Scripter.Smo;
 using Microsoft.Win32;
 
 namespace SSMScripter16.VSPackage

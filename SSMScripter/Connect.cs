@@ -7,6 +7,7 @@ using EnvDTE80;
 using Extensibility;
 using SSMScripter.Integration;
 using SSMScripter.Scripter;
+using SSMScripter.Scripter.Smo;
 using SSMScripter.Integration.DTE;
 
 namespace SSMScripter

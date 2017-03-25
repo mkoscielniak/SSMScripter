@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace SSMScripter.Scripter
+namespace SSMScripter.Scripter.Smo
 {
     public abstract class SmoScriptableObject
     {

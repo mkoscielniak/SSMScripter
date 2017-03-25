@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace SSMScripter.Scripter
+namespace SSMScripter.Scripter.Smo
 {
     public class SmoCreatableObject : SmoScriptableObject
     {

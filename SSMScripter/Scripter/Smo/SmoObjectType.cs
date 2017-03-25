@@ -1,4 +1,4 @@
-﻿namespace SSMScripter.Scripter
+﻿namespace SSMScripter.Scripter.Smo
 {
     public enum SmoObjectType
     {

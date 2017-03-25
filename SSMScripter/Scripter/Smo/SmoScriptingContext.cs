@@ -4,7 +4,7 @@ using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using SSMScripter.Config;
 
-namespace SSMScripter.Scripter
+namespace SSMScripter.Scripter.Smo
 {
     public class SmoScriptingContext
     {
