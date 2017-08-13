@@ -17,7 +17,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using System.Windows.Forms;
 
-namespace SSMScripter16.VSPackage
+namespace SSMScripter.VSPackage
 {    
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]

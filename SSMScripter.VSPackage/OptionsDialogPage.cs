@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SSMScripter16.VSPackage
+namespace SSMScripter.VSPackage
 {
     public class OptionsDialogPage : DialogPage
     {

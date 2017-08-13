@@ -23,8 +23,8 @@
     <ProjectGuid>{AF287178-CF0F-47A2-8F99-E4EE89779FA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SSMScripter16.VSPackage</RootNamespace>
-    <AssemblyName>SSMScripter16.VSPackage</AssemblyName>
+    <RootNamespace>SSMScripter.VSPackage</RootNamespace>
+    <AssemblyName>SSMScripter17.VSPackage</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\17\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,7 +45,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\17\Release</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -67,9 +67,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SSMScripter\SSMScripter16.csproj">
+    <ProjectReference Include="..\SSMScripter\SSMScripter17.csproj">
       <Project>{bc25735c-cb7e-47db-a1f1-16cb7203df92}</Project>
-      <Name>SSMScripter16</Name>
+      <Name>SSMScripter17</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

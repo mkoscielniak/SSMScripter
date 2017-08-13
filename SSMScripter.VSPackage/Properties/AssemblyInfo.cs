@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SSMScripter16.VSPackage")]
+[assembly: AssemblyTitle("SSMScripter17.VSPackage")]
 [assembly: AssemblyDescription("SSMS Text Editor object scripter")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SSMScripter16.VSPackage")]
-[assembly: AssemblyCopyright("reVis (c) 2016")]
+[assembly: AssemblyProduct("SSMScripter17.VSPackage")]
+[assembly: AssemblyCopyright("reVis (c) 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

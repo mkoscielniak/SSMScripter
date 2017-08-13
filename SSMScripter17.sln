@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter16", "SSMScripter\SSMScripter16.csproj", "{BC25735C-CB7E-47DB-A1F1-16CB7203DF92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter17", "SSMScripter\SSMScripter17.csproj", "{BC25735C-CB7E-47DB-A1F1-16CB7203DF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter16.VSPackage", "SSMScripter.VSPackage\SSMScripter16.VSPackage.csproj", "{AF287178-CF0F-47A2-8F99-E4EE89779FA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter17.VSPackage", "SSMScripter.VSPackage\SSMScripter17.VSPackage.csproj", "{AF287178-CF0F-47A2-8F99-E4EE89779FA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

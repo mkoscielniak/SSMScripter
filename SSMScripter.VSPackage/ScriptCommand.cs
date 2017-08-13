@@ -17,7 +17,7 @@ using SSMScripter.Scripter;
 using SSMScripter.Scripter.Smo;
 using Microsoft.Win32;
 
-namespace SSMScripter16.VSPackage
+namespace SSMScripter.VSPackage
 {    
     internal sealed class ScriptCommand
     {
