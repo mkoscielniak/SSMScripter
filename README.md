@@ -1,6 +1,6 @@
-#SSMScripter 
+# SSMScripter 
 
-##Description
+## Description
 
 SSMScripter is addin (plugin) for Microsoft SQL Management Studio which gives you ability 
 to script database objects directly from SQL text editor or result grid into new editor window.
@@ -23,7 +23,7 @@ Main features:
 	* sql text editor
 	* result grid
 
-##Installation
+## Installation
 
 * Download release build
 	* SSMS 2012 - SSMScripter12
@@ -38,4 +38,4 @@ Main features:
 	* SSMS 2017 - `c:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Extensions\SSMScripter\`
 * Make sure all unpacked files are not blocked by Windows security (if so unblock them in file Properties)
 * Run SSMS
-* Answer "No" in warning dialog about incorrectly loaded "ScriptCommandPackage" and then restart SSMS instance (warning appears only during first run after instalation of 2016/2017 versions)
+* Answer "No" in warning dialog about incorrectly loaded "ScriptCommandPackage" and then restart SSMS instance (warning appears only during first run after instalation in 2016/2017 versions)
