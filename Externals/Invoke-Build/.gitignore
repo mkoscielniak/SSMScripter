@@ -1,0 +1,8 @@
+.vscode
+*.clixml
+*.htm
+*.log
+*.nupkg
+*.zip
+*-Help.xml
+z

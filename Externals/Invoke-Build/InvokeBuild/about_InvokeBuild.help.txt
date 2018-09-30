@@ -1,0 +1,31 @@
+TOPIC
+    about_InvokeBuild
+
+SHORT DESCRIPTION
+    Build and test automation in PowerShell
+
+LONG DESCRIPTION
+    The module provides two commands:
+
+        Invoke-Build
+            The alias of Invoke-Build.ps1
+            It invokes build scripts, this is the build engine.
+
+        Invoke-Builds
+            The alias of Invoke-Builds.ps1
+            It invokes parallel builds using the engine.
+
+    Import the module:
+
+        Import-Module InvokeBuild
+
+    Get help for the engine:
+
+        help <path>\Invoke-Build.ps1 -full
+
+    Get help for build commands:
+
+        . <path>\Invoke-Build.ps1
+        help task -full
+        help exec -full
+        ...
