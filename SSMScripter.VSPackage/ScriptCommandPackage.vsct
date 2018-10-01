@@ -51,7 +51,7 @@
           You can add more than one CommandFlag node e.g.:
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
-          If you do not want an image next to your command, remove the Icon node /> -->     
+          If you do not want an image next to your command, remove the Icon node /> -->           
       <Button guid="guidScriptCommandPackageCmdSet" id="ScriptCommandId" priority="0x0100" type="Button">        
         <Parent guid="guidScriptCommandPackageCmdSet" id="MyMenuGroup" />        
         <Icon guid="guidImages" id="bmpPic1" />
@@ -60,8 +60,8 @@
           <ButtonText>SSMScripter Script...</ButtonText>
         </Strings>        
       </Button>
-      <Button guid="guidRunCommandPackageCmdSet" id="RunCommandId" priority="0x0200" type="Button">
-        <Parent guid="guidRunCommandPackageCmdSet" id="MyMenuGroup" />
+      <Button guid="guidScriptCommandPackageCmdSet" id="RunCommandId" priority="0x0200" type="Button">
+        <Parent guid="guidScriptCommandPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
@@ -83,7 +83,7 @@
 
   <KeyBindings>
     <KeyBinding guid="guidScriptCommandPackageCmdSet" id="ScriptCommandId" editor="guidVSStd97" key1="VK_F12" />
-    <KeyBinding guid="guidRunCommandPackageCmdSet" id="RunCommandId" editor="guidVSStd97" key1="VK_F12" mod1="Control" />
+    <KeyBinding guid="guidScriptCommandPackageCmdSet" id="RunCommandId" editor="guidVSStd97" key1="VK_F12" mod1="Control" />
   </KeyBindings>
   
   <Symbols>
@@ -94,12 +94,8 @@
     <GuidSymbol name="guidScriptCommandPackageCmdSet" value="{863ad083-bf64-40ce-9b33-faf58aa24dec}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />      
       <IDSymbol name="ScriptCommandId" value="0x0100" />
-    </GuidSymbol>
-
-    <GuidSymbol name="guidRunCommandPackageCmdSet" value="{59dfb010-0dd3-4b6f-9a0b-ec01c64e270e}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="RunCommandId" value="0x0200" />
-    </GuidSymbol>
+    </GuidSymbol>    
 
     <GuidSymbol name="guidImages" value="{8822201b-b5ad-4591-8c15-34f2c173a4bf}" >
       <IDSymbol name="bmpPic1" value="1" />

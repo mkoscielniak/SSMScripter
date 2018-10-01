@@ -16,18 +16,21 @@ using EnvDTE;
 using SSMScripter.Scripter;
 using SSMScripter.Scripter.Smo;
 using Microsoft.Win32;
+using SSMScripter.Runner;
 
 namespace SSMScripter.VSPackage
 {    
     internal sealed class ScriptCommand
     {
-        public const int CommandId = 0x0100;
+        public const int CommandScriptId = 0x0100;
+        public const int CommandRunId = 0x0200;
 
         public static readonly Guid CommandSet = new Guid("863ad083-bf64-40ce-9b33-faf58aa24dec");
 
         private readonly Package _package;
 
         private readonly ScriptAction _scriptAction;
+        private readonly RunAction _runAction;
 
 
         private ScriptCommand(Package package)
@@ -40,16 +43,21 @@ namespace SSMScripter.VSPackage
             OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
             {
-                var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
-                commandService.AddCommand(menuItem);
+                var scriptMenuCommandId = new CommandID(CommandSet, CommandScriptId);
+                var scriptMenuCommand = new MenuCommand(this.MenuScriptCallback, scriptMenuCommandId);
+                commandService.AddCommand(scriptMenuCommand);
+
+                var runMenuCommandId = new CommandID(CommandSet, CommandRunId);
+                var runMenuCommand = new MenuCommand(this.MenuRunCallback, runMenuCommandId);
+                commandService.AddCommand(runMenuCommand);
             }
 
             DTE2 dte = (DTE2)ServiceProvider.GetService(typeof(DTE));
             IHostContext hostCtx = new HostContext(dte);
             IScripterParser parser = new SimpleScripterParser();
             IScripter scripter = new SmoScripter();
-            _scriptAction = new ScriptAction(hostCtx, scripter, parser);            
+            _scriptAction = new ScriptAction(hostCtx, scripter, parser);
+            _runAction = new RunAction(hostCtx);
         }
 
 
@@ -69,7 +77,7 @@ namespace SSMScripter.VSPackage
         }
         
         
-        private void MenuItemCallback(object sender, EventArgs e)
+        private void MenuScriptCallback(object sender, EventArgs e)
         {
             string result = String.Empty;
 
@@ -83,6 +91,23 @@ namespace SSMScripter.VSPackage
             }
 
             SetStatusBarText(result);            
+        }
+
+
+        private void MenuRunCallback(object sender, EventArgs e)
+        {
+            string result = String.Empty;
+
+            try
+            {
+                result = _runAction.Execute();
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+
+            SetStatusBarText(result);
         }
 
 
