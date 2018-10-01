@@ -38,6 +38,8 @@ namespace SSMScripter.VSPackage
         protected override void Initialize()
         {
             ScriptCommand.Initialize(this);
+            RunCommand.Initialize(this);
+
             base.Initialize();
 
             Timer timer = new Timer();

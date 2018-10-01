@@ -57,8 +57,16 @@
         <Icon guid="guidImages" id="bmpPic1" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
-          <ButtonText>Script...</ButtonText>
+          <ButtonText>SSMScripter Script...</ButtonText>
         </Strings>        
+      </Button>
+      <Button guid="guidRunCommandPackageCmdSet" id="RunCommandId" priority="0x0200" type="Button">
+        <Parent guid="guidRunCommandPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>SSMScripter Run...</ButtonText>
+        </Strings>
       </Button>
     </Buttons>
 
@@ -75,6 +83,7 @@
 
   <KeyBindings>
     <KeyBinding guid="guidScriptCommandPackageCmdSet" id="ScriptCommandId" editor="guidVSStd97" key1="VK_F12" />
+    <KeyBinding guid="guidRunCommandPackageCmdSet" id="RunCommandId" editor="guidVSStd97" key1="VK_F12" mod1="Control" />
   </KeyBindings>
   
   <Symbols>
@@ -83,8 +92,13 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidScriptCommandPackageCmdSet" value="{863ad083-bf64-40ce-9b33-faf58aa24dec}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="MyMenuGroup" value="0x1020" />      
       <IDSymbol name="ScriptCommandId" value="0x0100" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidRunCommandPackageCmdSet" value="{59dfb010-0dd3-4b6f-9a0b-ec01c64e270e}">
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="RunCommandId" value="0x0200" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{8822201b-b5ad-4591-8c15-34f2c173a4bf}" >
