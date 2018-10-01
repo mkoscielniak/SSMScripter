@@ -37,7 +37,7 @@ namespace SSMScripter.VSPackage
         
         protected override void Initialize()
         {
-            ScriptCommand.Initialize(this);            
+            ScriptCommandSet.Initialize(this);            
 
             base.Initialize();
 

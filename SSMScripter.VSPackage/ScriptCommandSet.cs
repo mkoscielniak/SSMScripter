@@ -20,7 +20,7 @@ using SSMScripter.Runner;
 
 namespace SSMScripter.VSPackage
 {    
-    internal sealed class ScriptCommand
+    internal sealed class ScriptCommandSet
     {
         public const int CommandScriptId = 0x0100;
         public const int CommandRunId = 0x0200;
@@ -33,7 +33,7 @@ namespace SSMScripter.VSPackage
         private readonly RunAction _runAction;
 
 
-        private ScriptCommand(Package package)
+        private ScriptCommandSet(Package package)
         {
             if (package == null)        
                 throw new ArgumentNullException("package");
@@ -61,7 +61,7 @@ namespace SSMScripter.VSPackage
         }
 
 
-        public static ScriptCommand Instance
+        public static ScriptCommandSet Instance
         {
             get;
             private set;
@@ -73,7 +73,7 @@ namespace SSMScripter.VSPackage
         
         public static void Initialize(Package package)
         {
-            Instance = new ScriptCommand(package);
+            Instance = new ScriptCommandSet(package);
         }
         
         
