@@ -54,10 +54,16 @@ namespace SSMScripter.VSPackage
 
             DTE2 dte = (DTE2)ServiceProvider.GetService(typeof(DTE));
             IHostContext hostCtx = new HostContext(dte);
+            
+            string registyMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
+
             IScripterParser parser = new SimpleScripterParser();
             IScripter scripter = new SmoScripter();
             _scriptAction = new ScriptAction(hostCtx, scripter, parser);
-            _runAction = new RunAction(hostCtx);
+
+            IRunConfigStorage runConfigStorage = new RunConfigRegistryStorage(registyMasterKey);
+            IRunContextProvider runContextProvider = new RunContextProvider(hostCtx, runConfigStorage);
+            _runAction = new RunAction(runContextProvider);
         }
 
 
