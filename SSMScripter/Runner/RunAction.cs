@@ -10,16 +10,29 @@ namespace SSMScripter.Runner
 {
     public class RunAction
     {
-        private IHostContext _hostCtx;
+        private IRunContextProvider _contextProvider;        
 
-        public RunAction(IHostContext hostCtx)
+        public RunAction(IRunContextProvider provider)
         {
-            _hostCtx = hostCtx;
+            _contextProvider = provider;
         }
 
 
         public string Execute()
-        {            
+        {
+            try
+            {
+                RunContext context = _contextProvider.Get();
+            }
+            catch(RunConfigUndefinedException ex)
+            {
+                return "Undefined";
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+
             return "OK";
         }
     }

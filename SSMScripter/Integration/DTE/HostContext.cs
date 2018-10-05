@@ -83,17 +83,30 @@ namespace SSMScripter.Integration.DTE
 
         public IDbConnection CloneCurrentConnection()
         {
+            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo();
+            IDbConnection connection = connectionInfo.CreateConnectionObject();
+            return connection;
+        }
+
+
+        public string GetCurrentConnectionString()
+        {
+            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo();
+            return connectionInfo.ConnectionString;
+        }
+
+
+        private SqlConnectionInfo GetCurrentSqlConnectionInfo()
+        {
             CurrentlyActiveWndConnectionInfo connectionInfo = ServiceCache.ScriptFactory.CurrentlyActiveWndConnectionInfo;
             string databaseName = connectionInfo.UIConnectionInfo.AdvancedOptions["DATABASE"];
 
             SqlOlapConnectionInfoBase connectionBase = UIConnectionInfoUtil.GetCoreConnectionInfo(connectionInfo.UIConnectionInfo);
 
-            var sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
+            SqlConnectionInfo sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
             sqlConnectionInfo.DatabaseName = databaseName;
 
-            IDbConnection connection = sqlConnectionInfo.CreateConnectionObject();
-
-            return connection;
+            return sqlConnectionInfo;
         }
     }
 }
