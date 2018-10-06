@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,6 @@ namespace SSMScripter.Runner
     {
         public RunConfig Config { get; set; }
 
-        public string ConnectionString { get; set; }
+        public SqlConnectionStringBuilder ConnectionString { get; set; }
     }
 }

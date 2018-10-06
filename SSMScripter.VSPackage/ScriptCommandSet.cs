@@ -54,6 +54,7 @@ namespace SSMScripter.VSPackage
 
             DTE2 dte = (DTE2)ServiceProvider.GetService(typeof(DTE));
             IHostContext hostCtx = new HostContext(dte);
+            IWindowsUser windowsUser = new WindowsUser();
             
             string registyMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
 
@@ -63,7 +64,9 @@ namespace SSMScripter.VSPackage
 
             IRunConfigStorage runConfigStorage = new RunConfigRegistryStorage(registyMasterKey);
             IRunContextProvider runContextProvider = new RunContextProvider(hostCtx, runConfigStorage);
-            _runAction = new RunAction(runContextProvider);
+            IRunParamsProcessor runParamsProcessor = new RunParamsProcessor(windowsUser);
+            IRunProcessStarter runProcessStarter = new RunProcessStarter();
+            _runAction = new RunAction(runContextProvider, runParamsProcessor, runProcessStarter);
         }
 
 

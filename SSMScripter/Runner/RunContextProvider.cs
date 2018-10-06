@@ -1,6 +1,7 @@
 ﻿using SSMScripter.Integration;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +27,12 @@ namespace SSMScripter.Runner
                 throw new RunConfigUndefinedException();               
 
             string connectionStr = _hostCtx.GetCurrentConnectionString();
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionStr);
 
             return new RunContext()
             {
                 Config = config,
-                ConnectionString = connectionStr,
+                ConnectionString = builder,
             };
         }
     }
