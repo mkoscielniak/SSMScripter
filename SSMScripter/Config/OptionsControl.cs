@@ -1,28 +1,33 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using SSMScripter.Runner;
+using SSMScripter.Scripter;
+using System;
 using System.Windows.Forms;
 
 namespace SSMScripter.Config
 {
     public partial class OptionsControl : UserControl
     {
-        private Options _options;
+        private IScripterConfigStorage _scripterConfigStorage;
+        private ScripterConfig _scripterConfig;
         
 
         public OptionsControl()
         {
             InitializeComponent();
+            string registryMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
+            _scripterConfigStorage = new ScripterConfigRegistryStorage(registryMasterKey);
         }
 
 
-        private void OptionsControl_Load(object sender, System.EventArgs e)
+        private void OptionsControl_Load(object sender, EventArgs e)
         {            
             try
             {
                 lblInfo.Text = String.Empty;
-                _options = new Options();
-                _options.Load();
+                _scripterConfig = _scripterConfigStorage.Load();
 
-                cbScriptDatabaseContext.Checked = _options.ScriptDatabaseContext;
+                cbScriptDatabaseContext.Checked = _scripterConfig.ScriptDatabaseContext;
                 cbScriptDatabaseContext.CheckedChanged += cbScriptDatabaseContext_CheckedChanged;
             }
             catch (Exception ex)
@@ -35,22 +40,16 @@ namespace SSMScripter.Config
 
         private void cbScriptDatabaseContext_CheckedChanged(object sender, EventArgs e)
         {
-            _options.ScriptDatabaseContext = cbScriptDatabaseContext.Checked;
-            StoreOptions();
-        }
+            _scripterConfig.ScriptDatabaseContext = cbScriptDatabaseContext.Checked;
 
-
-        private void StoreOptions()
-        {
             try
             {
-                _options.Store();
+                _scripterConfigStorage.Save(_scripterConfig);
             }
             catch (Exception ex)
             {
                 lblInfo.Text = ex.Message;
-                throw;
             }
-        }
+        }        
     }
 }

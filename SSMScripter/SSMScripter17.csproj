@@ -89,7 +89,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Options.cs" />
     <Compile Include="Config\OptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
