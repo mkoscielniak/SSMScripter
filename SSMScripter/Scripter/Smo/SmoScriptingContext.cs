@@ -11,8 +11,7 @@ namespace SSMScripter.Scripter.Smo
         public SmoObjectMetadata Metadata { get; protected set; }
         public ServerConnection Connection { get; protected set; }
         public Server Server { get; protected set; }
-        public Database Database { get; protected set; }
-        public Options Options { get; protected set; }
+        public Database Database { get; protected set; }        
 
         public SmoScriptingContext(IDbConnection connection, SmoObjectMetadata metadata)
         {
@@ -21,9 +20,9 @@ namespace SSMScripter.Scripter.Smo
             Database = Server.Databases[Connection.DatabaseName];
             
             Metadata = metadata;
-
-            Options = new Options();
-            Options.Load();
+            ScriptDatabaseContext = true;
         }
+
+        public bool ScriptDatabaseContext { get; set; }
     }
 }

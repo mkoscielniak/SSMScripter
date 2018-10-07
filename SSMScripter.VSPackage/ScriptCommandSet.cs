@@ -56,13 +56,14 @@ namespace SSMScripter.VSPackage
             IHostContext hostCtx = new HostContext(dte);
             IWindowsUser windowsUser = new WindowsUser();
             
-            string registyMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
+            string registryMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
 
-            IScripterParser parser = new SimpleScripterParser();
+            IScripterParser scripterParser = new SimpleScripterParser();
             IScripter scripter = new SmoScripter();
-            _scriptAction = new ScriptAction(hostCtx, scripter, parser);
+            IScripterConfigStorage scripterConfigStorage = new ScripterConfigRegistryStorage(registryMasterKey);
+            _scriptAction = new ScriptAction(hostCtx, scripter, scripterParser, scripterConfigStorage);
 
-            IRunConfigStorage runConfigStorage = new RunConfigRegistryStorage(registyMasterKey);
+            IRunConfigStorage runConfigStorage = new RunConfigRegistryStorage(registryMasterKey);
             IRunContextProvider runContextProvider = new RunContextProvider(hostCtx, runConfigStorage);
             IRunParamsProcessor runParamsProcessor = new RunParamsProcessor(windowsUser);
             IRunProcessStarter runProcessStarter = new RunProcessStarter();

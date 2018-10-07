@@ -31,7 +31,7 @@ namespace SSMScripter.Scripter.Smo
         {
             var output = new StringCollection();
 
-            if (ctx.Options.ScriptDatabaseContext)
+            if (ctx.ScriptDatabaseContext)
             {
                 AddDatabaseContext(output, ctx);
                 AddBatchSeparator(output, ctx);

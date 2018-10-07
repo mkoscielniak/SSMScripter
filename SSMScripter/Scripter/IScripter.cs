@@ -13,5 +13,6 @@ namespace SSMScripter.Scripter
     {
         public string Schema { get; set; }
         public string Name { get; set; }
+        public bool ScriptDatabaseContext { get; set; }
     }    
 }

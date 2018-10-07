@@ -12,8 +12,9 @@ namespace SSMScripter.Scripter
         private IHostContext _hostCtx;
         private IScripter _scripter;
         private IScripterParser _parser;
+        private IScripterConfigStorage _configStorage;
 
-        public ScriptAction(IHostContext hostCtx, IScripter scripter, IScripterParser parser)
+        public ScriptAction(IHostContext hostCtx, IScripter scripter, IScripterParser parser, IScripterConfigStorage configStorage)
         {
             if (hostCtx == null)
                 throw new ArgumentNullException("hostCtx");
@@ -25,6 +26,7 @@ namespace SSMScripter.Scripter
             _hostCtx = hostCtx;
             _scripter = scripter;
             _parser = parser;
+            _configStorage = configStorage;
         }
 
 
@@ -38,10 +40,13 @@ namespace SSMScripter.Scripter
             if (!_parser.TryParse(parserInput, out parserResult))
                 return parserResult.Error;
 
+            ScripterConfig config = _configStorage.Load();
+
             var scripterInput = new ScripterInput()
             {
                 Schema = parserResult.Schema,
                 Name = parserResult.Name,
+                ScriptDatabaseContext = config.ScriptDatabaseContext,
             };
 
             string scriptResult = null;

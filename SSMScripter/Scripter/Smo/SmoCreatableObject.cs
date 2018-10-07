@@ -15,7 +15,7 @@ namespace SSMScripter.Scripter.Smo
             var scripter = new Microsoft.SqlServer.Management.Smo.Scripter(context.Server);
             Microsoft.SqlServer.Management.Smo.ScriptingOptions options = scripter.Options;
 
-            options.IncludeDatabaseContext = context.Options.ScriptDatabaseContext;
+            options.IncludeDatabaseContext = context.ScriptDatabaseContext;
             
             StringCollection scriptingResult = scripter.Script(new[] {ScriptedObject});
             

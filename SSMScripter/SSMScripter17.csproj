@@ -120,9 +120,11 @@
     <Compile Include="Runner\RunParamsProcessor.cs" />
     <Compile Include="Runner\RunProcessStarter.cs" />
     <Compile Include="Scripter\IScripter.cs" />
-    <Compile Include="Scripter\IScripterFactory.cs" />
+    <Compile Include="Scripter\IScripterConfigStorage.cs" />
     <Compile Include="Scripter\IScripterParser.cs" />
     <Compile Include="Scripter\ScriptAction.cs" />
+    <Compile Include="Scripter\ScripterConfig.cs" />
+    <Compile Include="Scripter\ScripterConfigRegistryStorage.cs" />
     <Compile Include="Scripter\SimpleScripterParser.cs" />
     <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
     <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
