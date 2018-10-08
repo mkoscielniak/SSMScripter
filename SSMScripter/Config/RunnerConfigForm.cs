@@ -44,7 +44,9 @@ namespace SSMScripter.Config
         {
             using(OpenFileDialog dialog = new OpenFileDialog())
             {
-                dialog.InitialDirectory = Path.GetDirectoryName(tbTool.Text) ?? String.Empty;
+                if (!String.IsNullOrEmpty(tbTool.Text))
+                    dialog.InitialDirectory = Path.GetDirectoryName(tbTool.Text);
+
                 dialog.FileName = Path.GetFileName(tbTool.Text) ?? String.Empty;
                 dialog.Filter = "Exe files (*.exe)|*.exe|All files (*.*)|*.*";
                 dialog.RestoreDirectory = true;
