@@ -30,7 +30,7 @@ namespace SSMScripter.Runner
                 RunContext context = _contextProvider.Get();
                 RunConfig config = context.Config;
                 string args = _paramsProcessor.Compose(config.RunArgs, context.ConnectionString);
-                _process.Start(config.RunTool, config.RunArgs);
+                _process.Start(config.RunTool, args);
             }
             catch(RunConfigUndefinedException)
             {
