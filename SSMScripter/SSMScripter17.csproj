@@ -107,6 +107,7 @@
     <Compile Include="Integration\EditedLine.cs" />
     <Compile Include="Integration\IEditor.cs" />
     <Compile Include="Integration\IHostContext.cs" />
+    <Compile Include="Integration\ConnectionInfoException.cs" />
     <Compile Include="Integration\IResultGrid.cs" />
     <Compile Include="Integration\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

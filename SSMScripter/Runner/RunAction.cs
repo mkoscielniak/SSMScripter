@@ -36,12 +36,16 @@ namespace SSMScripter.Runner
             {
                 return "Undefined";
             }
+            catch(ConnectionInfoException)
+            {
+                return "Insufficient connection info";
+            }
             catch(Exception)
             {
                 throw;
             }
 
-            return "OK";
+            return "Tool runned";
         }
     }
 }

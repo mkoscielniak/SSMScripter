@@ -101,6 +101,9 @@ namespace SSMScripter.Integration.DTE
             CurrentlyActiveWndConnectionInfo connectionInfo = ServiceCache.ScriptFactory.CurrentlyActiveWndConnectionInfo;
             string databaseName = connectionInfo.UIConnectionInfo.AdvancedOptions["DATABASE"];
 
+            if (String.IsNullOrEmpty(databaseName))
+                throw new ConnectionInfoException("No database context");
+
             SqlOlapConnectionInfoBase connectionBase = UIConnectionInfoUtil.GetCoreConnectionInfo(connectionInfo.UIConnectionInfo);
 
             SqlConnectionInfo sqlConnectionInfo = (SqlConnectionInfo)connectionBase;
