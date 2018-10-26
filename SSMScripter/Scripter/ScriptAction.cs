@@ -44,6 +44,7 @@ namespace SSMScripter.Scripter
 
             var scripterInput = new ScripterInput()
             {
+                Database = parserResult.Database,
                 Schema = parserResult.Schema,
                 Name = parserResult.Name,
                 ScriptDatabaseContext = config.ScriptDatabaseContext,
@@ -103,8 +104,8 @@ namespace SSMScripter.Scripter
 
             try
             {
-                using (IDbConnection connection = _hostCtx.CloneCurrentConnection())
-                {
+                using (IDbConnection connection = _hostCtx.CloneCurrentConnection(input.Database))
+                {                    
                     connection.Open();
                     result = _scripter.Script(connection, input);
                     success = true;

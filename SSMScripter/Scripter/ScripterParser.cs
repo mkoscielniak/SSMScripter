@@ -1,29 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SSMScripter.Scripter
 {
-    public class SimpleScripterParser : IScripterParser
-    {        
-        private readonly char[] _additionalChars = new char[] { '[', ']', '.', '_' };               
-
+    public class ScripterParser : IScripterParser
+    {
+        private readonly char[] _partsChars = new char[] { '.' };
+        private readonly char[] _partsTrim = new char[] { '[', ']' };
+        private readonly char[] _additionalChars = new char[] { '[', ']', '.', '_' };
 
         public bool TryParse(ScripterParserInput input, out ScripterParserResult result)
         {
             result = new ScripterParserResult();
-            
+
             string content = input.ContentLine;
             int index = input.Index;
-            
+
             Func<string, ScripterParserResult, bool> error = (msg, res) =>
             {
                 res.Error = msg;
                 return false;
-            };            
+            };
 
-            if(String.IsNullOrEmpty(content))
+            if (String.IsNullOrEmpty(content))
                 return error("Empty or null content", result);
-                                    
+
             if (index >= content.Length)
                 index = content.Length - 1;
 
@@ -34,26 +38,29 @@ namespace SSMScripter.Scripter
                 return error("Nothing found", result);
 
             string text = content.Substring(first, last - first + 1);
-            string schema = null;
-            string name = null;
-
-            int dotPos = text.IndexOf('.');
-
-            if (dotPos >= 0)
-            {
-                schema = text.Substring(0, dotPos).Trim('[',']');
-                name = text.Substring(dotPos + 1).Trim('[', ']');
-            }
-            else
-            {
-                name = text.Trim('[',']');
-            }
-
             result.Text = text;
-            result.Schema = schema;
-            result.Name = name;
 
-            return true;
+            string[] parts = text.Split(_partsChars, StringSplitOptions.RemoveEmptyEntries);
+
+            switch(parts.Length)
+            {
+                case 0:
+                    return error("Empty or null content", result);
+                case 1:
+                    result.Name = parts[0].Trim(_partsTrim);
+                    return true;
+                case 2:
+                    result.Schema = parts[0].Trim(_partsTrim);
+                    result.Name = parts[1].Trim(_partsTrim);
+                    return true;
+                case 3:
+                    result.Database = parts[0].Trim(_partsTrim);
+                    result.Schema = parts[1].Trim(_partsTrim);
+                    result.Name = parts[2].Trim(_partsTrim);
+                    return true;
+                default:
+                    return error("Unknown content format", result);
+            }
         }
 
 

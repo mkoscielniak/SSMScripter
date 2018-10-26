@@ -58,7 +58,7 @@ namespace SSMScripter.VSPackage
             
             string registryMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
 
-            IScripterParser scripterParser = new SimpleScripterParser();
+            IScripterParser scripterParser = new ScripterParser();
             IScripter scripter = new SmoScripter();
             IScripterConfigStorage scripterConfigStorage = new ScripterConfigRegistryStorage(registryMasterKey);
             _scriptAction = new ScriptAction(hostCtx, scripter, scripterParser, scripterConfigStorage);

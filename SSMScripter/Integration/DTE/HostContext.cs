@@ -79,27 +79,26 @@ namespace SSMScripter.Integration.DTE
 
             return new ResultGrid(grid);
         }
+        
 
-
-        public IDbConnection CloneCurrentConnection()
+        public IDbConnection CloneCurrentConnection(string database)
         {
-            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo();
+            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo(database);            
             IDbConnection connection = connectionInfo.CreateConnectionObject();
             return connection;
         }
 
-
         public string GetCurrentConnectionString()
         {
-            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo();
+            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo(null);
             return connectionInfo.ConnectionString;
         }
 
 
-        private SqlConnectionInfo GetCurrentSqlConnectionInfo()
+        private SqlConnectionInfo GetCurrentSqlConnectionInfo(string databaseName)
         {
             CurrentlyActiveWndConnectionInfo connectionInfo = ServiceCache.ScriptFactory.CurrentlyActiveWndConnectionInfo;
-            string databaseName = connectionInfo.UIConnectionInfo.AdvancedOptions["DATABASE"];
+            databaseName = databaseName ?? connectionInfo.UIConnectionInfo.AdvancedOptions["DATABASE"];
 
             if (String.IsNullOrEmpty(databaseName))
                 throw new ConnectionInfoException("No database context");

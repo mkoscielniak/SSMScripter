@@ -131,7 +131,7 @@
     <Compile Include="Scripter\ScriptAction.cs" />
     <Compile Include="Scripter\ScripterConfig.cs" />
     <Compile Include="Scripter\ScripterConfigRegistryStorage.cs" />
-    <Compile Include="Scripter\SimpleScripterParser.cs" />
+    <Compile Include="Scripter\ScripterParser.cs" />
     <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
     <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
     <Compile Include="Scripter\Smo\SmoObjectMetadata.cs" />

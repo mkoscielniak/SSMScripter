@@ -13,8 +13,8 @@ namespace SSMScripter.Integration
         IEditor GetNewEditor();
 
         IResultGrid GetFocusedResultGrid();
-
-        IDbConnection CloneCurrentConnection();
+        
+        IDbConnection CloneCurrentConnection(string database);
 
         string GetCurrentConnectionString();
     }

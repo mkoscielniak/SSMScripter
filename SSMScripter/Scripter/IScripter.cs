@@ -11,6 +11,7 @@ namespace SSMScripter.Scripter
     
     public class ScripterInput
     {
+        public string Database { get; set; }
         public string Schema { get; set; }
         public string Name { get; set; }
         public bool ScriptDatabaseContext { get; set; }
