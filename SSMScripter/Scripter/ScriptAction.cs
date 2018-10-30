@@ -32,7 +32,7 @@ namespace SSMScripter.Scripter
 
         public string Execute()
         {
-            ScripterParserInput parserInput = null;            
+            ScripterParserInput parserInput = null;
             if (!TryGetParserInput(out parserInput))
                 return "Cannot find any input";
 
@@ -64,32 +64,20 @@ namespace SSMScripter.Scripter
 
         private bool TryGetParserInput(out ScripterParserInput input)
         {
-            input = null;            
+            input = null;
 
             IResultGrid grid = _hostCtx.GetFocusedResultGrid();
-
             if (grid != null)
+                input = new ScripterParserInput(grid.GetSelectedValue(), 0);
+
+            if (input == null)
             {
-                input = new ScripterParserInput()
-                {
-                    ContentLine = grid.GetSelectedValue(),
-                    Index = 0,
-                };
-            }
-
-            if(input == null)
-            { 
                 IEditor editor = _hostCtx.GetCurrentEditor();
-
                 if (editor != null)
                 {
                     EditedLine line = editor.GetEditedLine();
-                    input = new ScripterParserInput()
-                    {
-                        ContentLine = line.Line,
-                        Index = line.CaretPos,
-                    };
-                }                
+                    input = new ScripterParserInput(line.Line, line.CaretPos);
+                }
             }
 
             return input != null;
@@ -97,7 +85,7 @@ namespace SSMScripter.Scripter
 
 
         private bool TryScript(ScripterInput input, out string result)
-        {            
+        {
             result = null;
 
             bool success = false;
@@ -105,13 +93,13 @@ namespace SSMScripter.Scripter
             try
             {
                 using (IDbConnection connection = _hostCtx.CloneCurrentConnection(input.Database))
-                {                    
+                {
                     connection.Open();
                     result = _scripter.Script(connection, input);
                     success = true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result = ex.Message;
             }

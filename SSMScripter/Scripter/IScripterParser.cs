@@ -1,4 +1,6 @@
-﻿namespace SSMScripter.Scripter
+﻿using System;
+
+namespace SSMScripter.Scripter
 {
     public interface IScripterParser
     {
@@ -7,8 +9,19 @@
 
     public class ScripterParserInput
     {
-        public string ContentLine { get; set; }
-        public int Index { get; set; }
+        public ScripterParserInput(string content, int index)
+        {
+            if (string.IsNullOrEmpty(content))
+                throw new ArgumentException("Content cannot be null or empty", "content");
+            if (index < 0 || index >= content.Length)
+                throw new IndexOutOfRangeException("Index is out of range in givent content");
+
+            Content = content;
+            Index = index;
+        }
+
+        public string Content { get; protected set; }
+        public int Index { get; protected set; }
     }
 
     public class ScripterParserResult

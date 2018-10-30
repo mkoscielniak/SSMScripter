@@ -16,7 +16,7 @@ namespace SSMScripter.Scripter
         {
             result = new ScripterParserResult();
 
-            string content = input.ContentLine;
+            string content = input.Content;
             int index = input.Index;
 
             Func<string, ScripterParserResult, bool> error = (msg, res) =>
@@ -27,9 +27,6 @@ namespace SSMScripter.Scripter
 
             if (String.IsNullOrEmpty(content))
                 return error("Empty or null content", result);
-
-            if (index >= content.Length)
-                index = content.Length - 1;
 
             int first = FindFirstAcceptableCharPos(content, index);
             int last = FindLastAcceptableCharPos(content, index);
