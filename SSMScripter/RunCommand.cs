@@ -6,23 +6,24 @@ using Microsoft.SqlServer.Management.UI.VSIntegration.Editors;
 using Microsoft.VisualStudio.CommandBars;
 using SSMScripter.Integration;
 using SSMScripter.Properties;
+using SSMScripter.Runner;
 using SSMScripter.Scripter;
 
 namespace SSMScripter
 {
-    class ScriptCommand : ICommand
+    class RunCommand : ICommand
     {
         private readonly DTE2 _app;
         private readonly AddIn _addin;
-        private readonly ScriptAction _scriptAction;
+        private readonly RunAction _runAction;
         
 
-        public ScriptCommand(DTE2 app, AddIn addin, ScriptAction scriptAction)
+        public RunCommand(DTE2 app, AddIn addin, RunAction runAction)
         {
-            Name = "SSMScripterScript";
+            Name = "SSMScripterRun";
             _app = app;
             _addin = addin;
-            _scriptAction = scriptAction;
+            _runAction = runAction;
         }
 
 
@@ -38,8 +39,8 @@ namespace SSMScripter
             Command command = commands.AddNamedCommand2(
                 _addin,
                 Name,
-                "Script...",
-                "Script...",
+                "Run tool",
+                "Run tool",
                 false,
                 Resources.ScriptCommandIcon,
                 ref guids,
@@ -47,19 +48,19 @@ namespace SSMScripter
                 (int)vsCommandStyle.vsCommandStylePictAndText,
                 vsCommandControlType.vsCommandControlTypeButton);
 
-            command.Bindings = new object[] { "SQL Query Editor::F12" };
+            command.Bindings = new object[] { "Global::Ctrl+F12" };
 
-            CommandBar resultGridCommandBar = commandBars["SQL Results Grid Tab Context"];
-            command.AddControl(resultGridCommandBar);
+            //CommandBar resultGridCommandBar = commandBars["SQL Results Grid Tab Context"];
+            //command.AddControl(resultGridCommandBar);
 
-            CommandBar sqlEditorCommandBar = commandBars["SQL Files Editor Context"];
-            command.AddControl(sqlEditorCommandBar);
+            //CommandBar sqlEditorCommandBar = commandBars["SQL Files Editor Context"];
+            //command.AddControl(sqlEditorCommandBar);
         }
 
         
         public string Execute()
         {
-            return _scriptAction.Execute();
+            return _runAction.Execute();
         }        
     }
 }

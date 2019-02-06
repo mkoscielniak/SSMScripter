@@ -9,6 +9,8 @@ using SSMScripter.Integration;
 using SSMScripter.Scripter;
 using SSMScripter.Scripter.Smo;
 using SSMScripter.Integration.DTE;
+using Microsoft.Win32;
+using SSMScripter.Runner;
 
 namespace SSMScripter
 {
@@ -36,13 +38,27 @@ namespace SSMScripter
 
 
         private IEnumerable<ICommand> CreateCommands()
-        {
+        {            
             IHostContext hostCtx = new HostContext(_app);
+            IWindowsUser windowsUser = new WindowsUser();
 
-            IScripterParser parser = new SimpleScripterParser();
+            string registryMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
+
+            IScripterParser scripterParser = new ScripterParser();
             IScripter scripter = new SmoScripter();
-            ScriptAction scriptAction = new ScriptAction(hostCtx, scripter, parser);
+            IScripterConfigStorage scripterConfigStorage = new ScripterConfigRegistryStorage(registryMasterKey);
+            ScriptAction scriptAction = new ScriptAction(hostCtx, scripter, scripterParser, scripterConfigStorage);
+
             yield return new ScriptCommand(_app, _addin, scriptAction);
+
+            IRunConfigStorage runConfigStorage = new RunConfigRegistryStorage(registryMasterKey);
+            IRunContextProvider runContextProvider = new RunContextProvider(hostCtx, runConfigStorage);
+            IRunParamsProcessor runParamsProcessor = new RunParamsProcessor(windowsUser);
+            IRunProcessStarter runProcessStarter = new RunProcessStarter();
+            RunAction runAction = new RunAction(runContextProvider, runParamsProcessor, runProcessStarter);
+
+
+            yield return new RunCommand(_app, _addin, runAction);
         }
 
 

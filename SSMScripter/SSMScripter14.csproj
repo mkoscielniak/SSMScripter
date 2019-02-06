@@ -12,7 +12,7 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>SSMScripter14</AssemblyName>
     <DeploymentDirectory>.\bin\14</DeploymentDirectory>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE;SSMS14</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <IncrementalBuild>false</IncrementalBuild>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE;SSMS14</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <IncrementalBuild>false</IncrementalBuild>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>SSMScripter</RootNamespace>
@@ -85,10 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\RunnerConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\RunnerConfigForm.Designer.cs">
+      <DependentUpon>RunnerConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Integration\ConnectionInfoException.cs" />
+    <Compile Include="Integration\IWindowsUser.cs" />
+    <Compile Include="Integration\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\Options.cs" />
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,12 +121,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Runner\IRunConfigStorage.cs" />
+    <Compile Include="Runner\IRunContextProvider.cs" />
+    <Compile Include="Runner\IRunParamsProcessor.cs" />
+    <Compile Include="Runner\IRunProcessStarter.cs" />
+    <Compile Include="Runner\RunAction.cs" />
+    <Compile Include="Runner\RunConfig.cs" />
+    <Compile Include="Runner\RunConfigRegistryStorage.cs" />
+    <Compile Include="Runner\RunConfigUndefinedException.cs" />
+    <Compile Include="Runner\RunContext.cs" />
+    <Compile Include="Runner\RunContextProvider.cs" />
+    <Compile Include="Runner\RunParamsProcessor.cs" />
+    <Compile Include="Runner\RunProcessStarter.cs" />
+    <Compile Include="RunCommand.cs" />
     <Compile Include="ScriptCommand.cs" />
     <Compile Include="Scripter\IScripter.cs" />
-    <Compile Include="Scripter\IScripterFactory.cs" />
+    <Compile Include="Scripter\IScripterConfigStorage.cs" />
     <Compile Include="Scripter\IScripterParser.cs" />
     <Compile Include="Scripter\ScriptAction.cs" />
-    <Compile Include="Scripter\SimpleScripterParser.cs" />
+    <Compile Include="Scripter\ScripterConfig.cs" />
+    <Compile Include="Scripter\ScripterConfigRegistryStorage.cs" />
+    <Compile Include="Scripter\ScripterParser.cs" />
     <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
     <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
     <Compile Include="Scripter\Smo\SmoObjectMetadata.cs" />
@@ -183,6 +208,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Config\OptionsControl.resx">
       <DependentUpon>OptionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\RunnerConfigForm.resx">
+      <DependentUpon>RunnerConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
