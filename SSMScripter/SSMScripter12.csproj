@@ -47,7 +47,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 11.0\Visual Studio Tools for Office\PIA\Common\Extensibility.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
     </Reference>
@@ -55,15 +55,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Windows\assembly\GAC_32\Microsoft.SqlServer.GridControl\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.GridControl.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.RegSvrEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.Smo">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
     </Reference>
