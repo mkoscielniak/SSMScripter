@@ -48,13 +48,7 @@ namespace SSMScripter
                 (int)vsCommandStyle.vsCommandStylePictAndText,
                 vsCommandControlType.vsCommandControlTypeButton);
 
-            command.Bindings = new object[] { "Global::Ctrl+F12" };
-
-            //CommandBar resultGridCommandBar = commandBars["SQL Results Grid Tab Context"];
-            //command.AddControl(resultGridCommandBar);
-
-            //CommandBar sqlEditorCommandBar = commandBars["SQL Files Editor Context"];
-            //command.AddControl(sqlEditorCommandBar);
+            command.Bindings = new object[] { "Global::Ctrl+F12" };            
         }
 
         
