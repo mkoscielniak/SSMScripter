@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter17", "SSMScripte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter17.VSPackage", "SSMScripter.VSPackage\SSMScripter17.VSPackage.csproj", "{AF287178-CF0F-47A2-8F99-E4EE89779FA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMScripter.Tests", "SSMScripter.Tests\SSMScripter.Tests.csproj", "{ABAEC859-F9E0-44EF-B43C-489628464FAF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +20,6 @@ Global
 		{AF287178-CF0F-47A2-8F99-E4EE89779FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF287178-CF0F-47A2-8F99-E4EE89779FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF287178-CF0F-47A2-8F99-E4EE89779FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF287178-CF0F-47A2-8F99-E4EE89779FA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABAEC859-F9E0-44EF-B43C-489628464FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABAEC859-F9E0-44EF-B43C-489628464FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABAEC859-F9E0-44EF-B43C-489628464FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABAEC859-F9E0-44EF-B43C-489628464FAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
