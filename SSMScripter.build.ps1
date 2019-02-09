@@ -6,60 +6,131 @@ Set-BuildHeader {
 	'-' * 119		
 }
 
-Set-Alias MSBuild (Resolve-MSBuild)
-
+$MSBuild  = (Resolve-MSBuild 'x86')
 $base_path = (Resolve-Path .)
 
-function Clean-Build ($ver) {
-	Remove-Item $base_path\SSMScripter\bin\$ver -Recurse -Force -ErrorAction 0
-	Remove-Item $base_path\SSMScripter\obj\$ver -Recurse -Force -ErrorAction 0
+function Remove-PathIfExists ($path) {
+	if(Test-Path $path) {
+		Remove-Item $path -Recurse -Force -ErrorAction 0
+	}
 }
 
-function Build-Project($ver) {
-	exec { MSBuild $base_path\SSMScripter\SSMScripter$ver.csproj /t:Build /p:Configuration=Release /v:quiet /nologo }
+function Clean-Build ($ver) {
+	Remove-PathIfExists $base_path\SSMScripter\bin\$ver	
+	Remove-PathIfExists $base_path\SSMScripter\obj\$ver
+	Remove-PathIfExists $base_path\SSMScripter.VSPackage\bin\$ver
+	Remove-PathIfExists $base_path\SSMScripter.VSPackage\obj\$ver
+}
+
+function Init-BuildDir($ver) {
+	Remove-PathIfExists $base_path\Build\$ver
+	New-Item -ItemType directory $base_path\Build\$ver	
+}
+
+function Build-ProjectLib($ver) {
+	exec { & $MSBuild $base_path\SSMScripter\SSMScripter$ver.csproj /t:Build /p:Configuration=Release /v:quiet /nologo }	
+}
+
+function Copy-ProjectLibBuild($ver) {
+	Init-BuildDir $ver
+	Copy-Item $base_path\SSMScripter\bin\$ver\Release\SSMScripter$ver.dll $base_path\Build\$ver
+	Copy-Item $base_path\SSMScripter\bin\$ver\Release\SSMScripter$ver.AddIn $base_path\Build\$ver
+}
+
+function Build-ProjectPkg($ver) {
+	exec { & $MSBuild $base_path\SSMScripter.VSPackage\SSMScripter$ver.VSPackage.csproj /t:Build /p:Configuration=Release /v:quiet /nologo }	
+}
+
+function Copy-ProjectPkgBuild($ver) {
+	Init-BuildDir $ver
+	Copy-Item $base_path\SSMScripter.VSPackage\bin\$ver\Release\SSMScripter$ver.dll $base_path\Build\$ver
+	Copy-Item $base_path\SSMScripter.VSPackage\bin\$ver\Release\SSMScripter$ver.VSPackage.dll $base_path\Build\$ver
+	Copy-Item $base_path\SSMScripter.VSPackage\bin\$ver\Release\SSMScripter$ver.VSPackage.pkgdef $base_path\Build\$ver
+}
+
+function Release-ProjectBuild($ver) {
+	$verinf = (Get-Item $base_path\Build\$ver\SSMScripter$ver.dll).VersionInfo
+	$verstr = ("{0}.{1}" -f $verinf.FileMajorPart, $verinf.FileMinorPart)	
+	Compress-Archive $base_path\Build\$ver\*  $base_path\Build\SSMScripter$($ver)_v$verstr.zip -Force
 }
 
 # Synopsis: Shows instruction
 task Info {
-	Write-Host Gray 'Type "run task-name"'
+	Write-Host Gray 'Type "run task-name"'	
 }
 
-# Synopis: Cleans 2012 version
+# Synopsis: Builds all versions
+task Build Build12, Build14, Build16, Build17, Build18, {
+}
+
+# Synopsis: Cleans all versions
+task Clean Clean12, Clean14, Clean16, Clean17, Clean18, {
+}
+
+# Synopsis: Rebuild all versions
+task Rebuild Clean, Build, {
+}
+
+# Synopsis: Release all versions
+task Release Rebuild, {
+	Release-ProjectBuild 12
+	Release-ProjectBuild 14
+	Release-ProjectBuild 16
+	Release-ProjectBuild 17
+	Release-ProjectBuild 18
+}
+
+# Synopsis: Cleans 12 version
 task Clean12 {
 	Clean-Build 12
 }
 
-# Synopis: Cleans 2014 version
+# Synopsis: Cleans 14 version
 task Clean14 {
 	Clean-Build 14
 }
 
-# Synopis: Cleans 2016 version
+# Synopsis: Cleans 16 version
 task Clean16 {
 	Clean-Build 16
 }
 
-# Synopis: Cleans 2017 version
+# Synopsis: Cleans 17 version
 task Clean17 {
 	Clean-Build 17
 }
 
-# Synopsis: Builds 2012 version
+# Synopsis: Cleans 18 version
+task Clean18 {
+	Clean-Build 18
+}
+
+# Synopsis: Builds 12 version
 task Build12 {
-	Build-Project 12
+	Build-ProjectLib 12
+	Copy-ProjectLibBuild 12
 }
 
-# Synopsis: Builds 2014 version
+# Synopsis: Builds 14 version
 task Build14 {
-	Build-Project 14
+	Build-ProjectLib 14
+	Copy-ProjectLibBuild 14
 }
 
-# Synopsis: Builds 2016 version
+# Synopsis: Builds 16 version
 task Build16 {
-	Build-Project 16
+	Build-ProjectPkg 16
+	Copy-ProjectPkgBuild 16
 }
 
-# Synopsis: Builds 2017 version
+# Synopsis: Builds 17 version
 task Build17 {
-	Build-Project 17
+	Build-ProjectPkg 17
+	Copy-ProjectPkgBuild 17
+}
+
+# Synopsis: Builds 18 version
+task Build18 {
+	Build-ProjectPkg 18
+	Copy-ProjectPkgBuild 18
 }

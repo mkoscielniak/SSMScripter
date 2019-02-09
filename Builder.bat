@@ -1,5 +1,5 @@
 @echo off
-start powershell -Version 2.0 -NoLogo -NoExit -ExecutionPolicy Bypass -Command ^
+start powershell -Version 3.0 -NoLogo -NoExit -ExecutionPolicy Bypass -Command ^
 
 $console = (Get-Host).UI.RawUI;^
 $console.WindowTitle = 'SSMScripter Builder Console';^
