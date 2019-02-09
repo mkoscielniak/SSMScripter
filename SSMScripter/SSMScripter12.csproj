@@ -54,7 +54,7 @@
     </Reference>
     <Reference Include="Microsoft.SqlServer.GridControl">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.GridControl\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.GridControl.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_32\Microsoft.SqlServer.GridControl\11.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.GridControl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc">
       <SpecificVersion>False</SpecificVersion>
