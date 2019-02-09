@@ -7,7 +7,7 @@
     <ProjectGuid>{BC25735C-CB7E-47DB-A1F1-16CB7203DF92}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SSMScripter16</RootNamespace>
+    <RootNamespace>SSMScripter</RootNamespace>
     <AssemblyName>SSMScripter16</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -52,17 +52,26 @@
     <Reference Include="EnvDTE90, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=13.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SqlServer.GridControl, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.GridControl">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\Microsoft.SqlServer.GridControl.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=13.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SqlServer.RegSvrEnum, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Smo, Version=13.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.CommandBars, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -99,15 +108,14 @@
     <Compile Include="Config\RunnerConfigForm.Designer.cs">
       <DependentUpon>RunnerConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Integration\ConnectionInfoException.cs" />
     <Compile Include="Integration\DTE\Editor.cs" />
     <Compile Include="Integration\DTE\HostContext.cs" />
     <Compile Include="Integration\DTE\ResultGrid.cs" />
     <Compile Include="Integration\EditedLine.cs" />
     <Compile Include="Integration\IEditor.cs" />
     <Compile Include="Integration\IHostContext.cs" />
+    <Compile Include="Integration\ConnectionInfoException.cs" />
     <Compile Include="Integration\IResultGrid.cs" />
-    <Compile Include="Integration\IWindowsUser.cs" />
     <Compile Include="Integration\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
@@ -115,6 +123,7 @@
     <Compile Include="Runner\IRunContextProvider.cs" />
     <Compile Include="Runner\IRunParamsProcessor.cs" />
     <Compile Include="Runner\IRunProcessStarter.cs" />
+    <Compile Include="Integration\IWindowsUser.cs" />
     <Compile Include="Runner\RunAction.cs" />
     <Compile Include="Runner\RunConfig.cs" />
     <Compile Include="Runner\RunConfigRegistryStorage.cs" />
@@ -154,6 +163,7 @@
   <ItemGroup>
     <None Include="Key.snk" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

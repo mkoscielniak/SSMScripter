@@ -12,6 +12,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>14.0</OldToolsVersion>
+    <TargetFrameworkProfile />
     <BaseIntermediateOutputPath>obj\16\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
