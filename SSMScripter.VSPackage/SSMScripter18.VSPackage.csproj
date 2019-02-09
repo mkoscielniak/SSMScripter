@@ -13,6 +13,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>14.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <BaseIntermediateOutputPath>obj\18\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
