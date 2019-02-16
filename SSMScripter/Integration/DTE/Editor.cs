@@ -24,6 +24,8 @@ namespace SSMScripter.Integration.DTE
         public EditedLine GetEditedLine()
         {
             TextSelection textSelection = _document.Selection;
+            if (!String.IsNullOrEmpty(textSelection.Text))
+                return new EditedLine(textSelection.Text, 0);
 
             VirtualPoint point = textSelection.ActivePoint;
             EditPoint editPoint = point.CreateEditPoint();
