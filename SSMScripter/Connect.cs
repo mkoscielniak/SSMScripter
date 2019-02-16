@@ -71,11 +71,16 @@ namespace SSMScripter
 
         private void UnbindCommands()
         {
-            foreach (string commandName in _commands.Keys)
+            var unbindable = _commands.Keys.Concat(new string[]
+            {
+                "SSMScripter.Connect.SSMScripter"
+            });
+
+            foreach (string names in unbindable)
             {
                 try
                 {
-                    Command bindedCommand = _app.Commands.Item(commandName, -1);
+                    Command bindedCommand = _app.Commands.Item(names, -1);
                     bindedCommand.Delete();
                 }
                 catch (ArgumentException ae)
