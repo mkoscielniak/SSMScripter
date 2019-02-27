@@ -25,12 +25,19 @@ It is also capable to run external program in currently used database context.
 	* Adds `Script...` command into context menu in SSMS 2012/2014:
 		* sql text editor
 		* result grid
+	* Script by cursor position or provided text selection
 * SSMScripterRun
 	* Open external program with additional arguments provided by database context:
 		* `$(Server)` - db server name ex INSTANCE/SQL2018
 		* `$(Database)` - db name
 		* `$(User)` - connected user name or domain user name
 		* `$(Password)` - user password if provided
+	* Binds to `Ctrl+F12`
+	* Run from Object Explorer tree elements or SQL editor windows
+* Its configurable from SSMS Options window (SSMScripter section)
+
+## Known issues
+Default key binding may not work after installation in SSMS 18. Please enter Options in SSMS and manually bind desired keys to commands.
 
 ## Installation
 
