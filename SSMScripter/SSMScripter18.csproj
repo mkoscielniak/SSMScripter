@@ -111,11 +111,13 @@
     </Compile>
     <Compile Include="Integration\DTE\Editor.cs" />
     <Compile Include="Integration\DTE\HostContext.cs" />
+    <Compile Include="Integration\DTE\HostDbConnection.cs" />
     <Compile Include="Integration\DTE\ResultGrid.cs" />
     <Compile Include="Integration\EditedLine.cs" />
     <Compile Include="Integration\IEditor.cs" />
     <Compile Include="Integration\IHostContext.cs" />
     <Compile Include="Integration\ConnectionInfoException.cs" />
+    <Compile Include="Integration\IHostDbConnection.cs" />
     <Compile Include="Integration\IResultGrid.cs" />
     <Compile Include="Integration\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

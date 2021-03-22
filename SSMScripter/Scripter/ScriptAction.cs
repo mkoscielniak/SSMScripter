@@ -92,11 +92,11 @@ namespace SSMScripter.Scripter
 
             try
             {
-                using (IDbConnection connection = _hostCtx.CloneCurrentConnection(input.Database))
+                using (IHostDbConnection hostConn = _hostCtx.CloneCurrentConnection(input.Database))
                 {
-                    connection.Open();
-                    result = _scripter.Script(connection, input);
-                    success = true;
+                    hostConn.Open();
+                    result = _scripter.Script(hostConn, input);
+                    success = true;                    
                 }
             }
             catch (Exception ex)

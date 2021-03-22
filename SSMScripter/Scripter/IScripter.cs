@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SSMScripter.Integration;
+using System;
 using System.Data;
 
 namespace SSMScripter.Scripter
 {
     public interface IScripter
     {
-        string Script(IDbConnection connection, ScripterInput input);
+        string Script(IHostDbConnection hostConn, ScripterInput input);
     }
 
     

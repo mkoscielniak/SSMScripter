@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using SSMScripter.Config;
+using SSMScripter.Integration;
 
 namespace SSMScripter.Scripter.Smo
 {
@@ -13,9 +14,9 @@ namespace SSMScripter.Scripter.Smo
         public Server Server { get; protected set; }
         public Database Database { get; protected set; }        
 
-        public SmoScriptingContext(IDbConnection connection, SmoObjectMetadata metadata)
-        {
-            Connection = new ServerConnection((SqlConnection)connection);
+        public SmoScriptingContext(IHostDbConnection hostConn, SmoObjectMetadata metadata)
+        {            
+            Connection = new ServerConnection((SqlConnectionInfo)hostConn.ConnectionInfo);            
             Server = new Server(Connection);
             Database = Server.Databases[Connection.DatabaseName];
             

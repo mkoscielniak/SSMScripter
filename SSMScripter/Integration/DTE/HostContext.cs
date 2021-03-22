@@ -81,11 +81,11 @@ namespace SSMScripter.Integration.DTE
         }
         
 
-        public IDbConnection CloneCurrentConnection(string database)
+        public IHostDbConnection CloneCurrentConnection(string database)
         {
-            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo(database);            
-            IDbConnection connection = connectionInfo.CreateConnectionObject();
-            return connection;
+            SqlConnectionInfo connectionInfo = GetCurrentSqlConnectionInfo(database);
+            IHostDbConnection hostDbConn = new HostDbConnection(connectionInfo);
+            return hostDbConn;
         }
 
         public string GetCurrentConnectionString()
