@@ -18,8 +18,11 @@ namespace SSMScripter.Scripter.Smo
 
         public SmoObjectMetadata(SmoObjectType type, string schema, string name, string parentSchema, string parentName)
         {
+            Type = type;
             Schema = schema;
             Name = name;
+            ParentSchema = parentSchema;
+            ParentName = parentName;
         }
     }
 }
