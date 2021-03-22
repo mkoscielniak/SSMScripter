@@ -110,12 +110,14 @@
     </Compile>
     <Compile Include="Integration\DTE\Editor.cs" />
     <Compile Include="Integration\DTE\HostContext.cs" />
+    <Compile Include="Integration\DTE\HostServerConnection.cs" />
     <Compile Include="Integration\DTE\ResultGrid.cs" />
     <Compile Include="Integration\EditedLine.cs" />
     <Compile Include="Integration\IEditor.cs" />
     <Compile Include="Integration\IHostContext.cs" />
     <Compile Include="Integration\ConnectionInfoException.cs" />
     <Compile Include="Integration\IResultGrid.cs" />
+    <Compile Include="Integration\IServerConnection.cs" />
     <Compile Include="Integration\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
     <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
     <Compile Include="Scripter\Smo\SmoObjectMetadata.cs" />
+    <Compile Include="Scripter\Smo\SmoObjectMetadataFactory.cs" />
     <Compile Include="Scripter\Smo\SmoObjectType.cs" />
     <Compile Include="Scripter\Smo\SmoScriptableObject.cs" />
     <Compile Include="Scripter\Smo\SmoScriptableObjectFactory.cs" />

@@ -91,6 +91,8 @@
       <DependentUpon>RunnerConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Integration\ConnectionInfoException.cs" />
+    <Compile Include="Integration\DTE\HostServerConnection.cs" />
+    <Compile Include="Integration\IServerConnection.cs" />
     <Compile Include="Integration\IWindowsUser.cs" />
     <Compile Include="Integration\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -142,6 +144,7 @@
     <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
     <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
     <Compile Include="Scripter\Smo\SmoObjectMetadata.cs" />
+    <Compile Include="Scripter\Smo\SmoObjectMetadataFactory.cs" />
     <Compile Include="Scripter\Smo\SmoObjectType.cs" />
     <Compile Include="Scripter\Smo\SmoScriptableObject.cs" />
     <Compile Include="Scripter\Smo\SmoScriptableObjectFactory.cs" />
