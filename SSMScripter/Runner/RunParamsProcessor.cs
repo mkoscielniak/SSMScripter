@@ -62,6 +62,7 @@ namespace SSMScripter.Runner
             paramsCtx["Database"] = connstr.InitialCatalog ?? String.Empty;
             paramsCtx["User"] = user;
             paramsCtx["Password"] = password;
+            paramsCtx["ConnectionString"] = connstr.ConnectionString;
         }
     }
 }

@@ -80,5 +80,28 @@ namespace SSMScripter.Tests.Runner
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void Compose_with_connection_string()
+        {            
+            string input = "$(ConnectionString)";
+            string expected = "Data Source=127.0.0.1;Initial Catalog=MYDATABASE;Integrated Security=False;User ID=user1;Password=user1pass";
+
+            SqlConnectionStringBuilder connstr = new SqlConnectionStringBuilder()
+            {
+                DataSource = "127.0.0.1",
+                InitialCatalog = "MYDATABASE",
+                UserID = "user1",
+                Password = "user1pass",
+                IntegratedSecurity = false
+            };
+
+            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
+            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+
+            string result = processor.Compose(input, connstr);
+
+            Assert.Equal(expected, result);
+        }
     }
 }
