@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -42,6 +43,15 @@ namespace SSMScripter.Integration.DTE
             EditPoint start = _document.CreateEditPoint(_document.StartPoint);
             start.Delete(_document.EndPoint);
             start.Insert(content);
-        }        
+        }
+
+
+        public void SetContent(StringCollection content)
+        {
+            EditPoint start = _document.CreateEditPoint(_document.StartPoint);
+            start.Delete(_document.EndPoint);
+            foreach (string part in content)
+                start.Insert(part);            
+        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using SSMScripter.Integration;
 using System;
+using System.Collections.Specialized;
 using System.Data;
 
 namespace SSMScripter.Scripter
 {
     public interface IScripter
     {
-        string Script(IServerConnection serverConn, ScripterInput input);
+        StringCollection Script(IServerConnection serverConn, ScripterInput input);
     }
 
     

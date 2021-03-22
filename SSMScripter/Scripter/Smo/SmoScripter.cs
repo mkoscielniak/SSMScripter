@@ -22,13 +22,13 @@ namespace SSMScripter.Scripter.Smo
         }
 
 
-        public string Script(IServerConnection serverConn, ScripterInput input)
+        public StringCollection Script(IServerConnection serverConn, ScripterInput input)
         {
             return Script(serverConn, input.Schema, input.Name);
         }
 
 
-        private string Script(IServerConnection serverConn, string schema, string name)
+        private StringCollection Script(IServerConnection serverConn, string schema, string name)
         {
             var metadata = _metadataFactory.Create(serverConn, schema, name);
             var context = new SmoScriptingContext(serverConn, metadata);
@@ -36,14 +36,7 @@ namespace SSMScripter.Scripter.Smo
             SmoScriptableObject obj = _objectFactory.Create(context);
             StringCollection batches = obj.Script(context);
 
-            var builder = new StringBuilder();
-
-            foreach (string batch in batches)
-                builder.Append(batch);
-
-            string result = builder.ToString();
-
-            return result;
+            return batches;
         }
     }
 }

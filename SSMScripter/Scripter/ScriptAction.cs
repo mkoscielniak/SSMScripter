@@ -1,6 +1,7 @@
 ﻿using SSMScripter.Integration;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -51,13 +52,9 @@ namespace SSMScripter.Scripter
             };
 
             string scriptResult = null;
-
-            if (!TryScript(scripterInput, out scriptResult))
+            if (!TryScriptIntoEditor(scripterInput, out scriptResult))
                 return scriptResult;
-
-            IEditor editor = _hostCtx.GetNewEditor();
-            editor.SetContent(scriptResult);
-
+            
             return "Success";
         }
 
@@ -84,28 +81,30 @@ namespace SSMScripter.Scripter
         }
 
 
-        private bool TryScript(ScripterInput input, out string result)
+        private bool TryScriptIntoEditor(ScripterInput input, out string result)
         {
             result = null;
-
-            bool success = false;
-
+            
             try
             {
+                StringCollection content;
+
                 using (IServerConnection serverConn = _hostCtx.CloneCurrentConnection(input.Database))
                 {
                     serverConn.Connect();
-                    result = _scripter.Script(serverConn, input);
-                    success = true;
+                    content = _scripter.Script(serverConn, input);                    ;
                     serverConn.Disconnect();
                 }
+
+                IEditor editor = _hostCtx.GetNewEditor();
+                editor.SetContent(content);
             }
             catch (Exception ex)
             {
                 result = ex.Message;
             }
 
-            return success;
+            return result == null;
         }
     }
 }
