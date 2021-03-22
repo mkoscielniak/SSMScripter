@@ -14,9 +14,9 @@ namespace SSMScripter.Scripter.Smo
         public Server Server { get; protected set; }
         public Database Database { get; protected set; }        
 
-        public SmoScriptingContext(IHostDbConnection hostConn, SmoObjectMetadata metadata)
-        {            
-            Connection = new ServerConnection((SqlConnectionInfo)hostConn.ConnectionInfo);            
+        public SmoScriptingContext(IServerConnection serverConn, SmoObjectMetadata metadata)
+        {
+            Connection = (ServerConnection)serverConn.Connection;
             Server = new Server(Connection);
             Database = Server.Databases[Connection.DatabaseName];
             

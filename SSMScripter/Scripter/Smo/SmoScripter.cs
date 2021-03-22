@@ -20,18 +20,18 @@ namespace SSMScripter.Scripter.Smo
         }
 
 
-        public string Script(IHostDbConnection hostConn, ScripterInput input)
+        public string Script(IServerConnection serverConn, ScripterInput input)
         {
-            return Script(hostConn, input.Schema, input.Name);
+            return Script(serverConn, input.Schema, input.Name);
         }
 
 
-        private string Script(IHostDbConnection hostConn, string schema, string name)
+        private string Script(IServerConnection serverConn, string schema, string name)
         {            
             var metadata = new SmoObjectMetadata(schema, name);
-            metadata.Initialize(hostConn.Connection);
+            metadata.Initialize(serverConn);
 
-            var context = new SmoScriptingContext(hostConn, metadata);            
+            var context = new SmoScriptingContext(serverConn, metadata);            
                 
             SmoScriptableObject obj = _objectFactory.Create(context);
             StringCollection batches = obj.Script(context);

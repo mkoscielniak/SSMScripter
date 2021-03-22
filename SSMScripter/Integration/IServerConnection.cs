@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace SSMScripter.Integration
 {
-    public interface IHostDbConnection : IDisposable
+    public interface IServerConnection : IDisposable
     {
-        IDbConnection Connection { get; }
-        object ConnectionInfo { get; }
-
-        void Open();
-        void Close();
+        void Connect();
+        void Disconnect();
+        IDataReader ExecuteReader(string query);
+        object Connection { get; }
     }
 }

@@ -6,7 +6,7 @@ namespace SSMScripter.Scripter
 {
     public interface IScripter
     {
-        string Script(IHostDbConnection hostConn, ScripterInput input);
+        string Script(IServerConnection serverConn, ScripterInput input);
     }
 
     

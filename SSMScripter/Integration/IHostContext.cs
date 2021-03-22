@@ -14,7 +14,7 @@ namespace SSMScripter.Integration
 
         IResultGrid GetFocusedResultGrid();
         
-        IHostDbConnection CloneCurrentConnection(string database);
+        IServerConnection CloneCurrentConnection(string database);
 
         string GetCurrentConnectionString();
     }
