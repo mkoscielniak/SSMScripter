@@ -12,10 +12,12 @@ namespace SSMScripter.Scripter.Smo
 {
     public class SmoScripter : IScripter
     {
+        private readonly SmoObjectMetadataFactory _metadataFactory;
         private readonly SmoScriptableObjectFactory _objectFactory;
-        
+
         public SmoScripter()
         {
+            _metadataFactory = new SmoObjectMetadataFactory();
             _objectFactory = new SmoScriptableObjectFactory();
         }
 
@@ -27,15 +29,13 @@ namespace SSMScripter.Scripter.Smo
 
 
         private string Script(IServerConnection serverConn, string schema, string name)
-        {            
-            var metadata = new SmoObjectMetadata(schema, name);
-            metadata.Initialize(serverConn);
+        {
+            var metadata = _metadataFactory.Create(serverConn, schema, name);
+            var context = new SmoScriptingContext(serverConn, metadata);
 
-            var context = new SmoScriptingContext(serverConn, metadata);            
-                
             SmoScriptableObject obj = _objectFactory.Create(context);
             StringCollection batches = obj.Script(context);
-                
+
             var builder = new StringBuilder();
 
             foreach (string batch in batches)

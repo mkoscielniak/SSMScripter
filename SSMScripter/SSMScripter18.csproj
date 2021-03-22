@@ -145,6 +145,7 @@
     <Compile Include="Scripter\Smo\SmoAlterableObject.cs" />
     <Compile Include="Scripter\Smo\SmoCreatableObject.cs" />
     <Compile Include="Scripter\Smo\SmoObjectMetadata.cs" />
+    <Compile Include="Scripter\Smo\SmoObjectMetadataFactory.cs" />
     <Compile Include="Scripter\Smo\SmoObjectType.cs" />
     <Compile Include="Scripter\Smo\SmoScriptableObject.cs" />
     <Compile Include="Scripter\Smo\SmoScriptableObjectFactory.cs" />
