@@ -32,12 +32,11 @@ It is also capable to run external program in currently used database context.
 		* `$(Database)` - db name
 		* `$(User)` - connected user name or domain user name
 		* `$(Password)` - user password if provided
+		* `$(ConnectionString)` - full connection string
 	* Binds to `Ctrl+F12`
 	* Run from Object Explorer tree elements or SQL editor windows
 * Its configurable from SSMS Options window (SSMScripter section)
 
-## Known issues
-Default key binding may not work after installation in SSMS 18. Please enter Options in SSMS and manually bind desired keys to commands.
 
 ## Installation
 
@@ -57,3 +56,13 @@ Default key binding may not work after installation in SSMS 18. Please enter Opt
 * Make sure all unpacked files are not blocked by Windows security (if so unblock them in file Properties)
 * Run SSMS
 * In SSMS 16 and 17 answer "No" in warning dialog about incorrectly loaded "ScriptCommandPackage" and then restart SSMS instance (warning appears only during first run after instalation)
+* In SSMS 18 you have to manually bind SSMScripter commands into key shortcuts:
+	* open SSMS Options window (menu Tools->Options)
+	* enter Environment->Keyboard settings
+	* into `Show commands containing` textbox enter `SSMSripter` to search for relevant commands
+	* you can bind commands by:
+		* selecting where new shortcut will work (preferred `Global` or at least `SQL Query Editor`)
+		* pressing selected keyboard shortcut
+		* and then clicking `Assign` button		
+	* bind `Tools.SSMScripterScript` command as Global, F12
+	* bind `Tools.SSMScripterRun` command as Global, Ctrl+F12
