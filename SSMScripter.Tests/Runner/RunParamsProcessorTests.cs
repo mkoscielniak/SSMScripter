@@ -83,7 +83,7 @@ namespace SSMScripter.Tests.Runner
 
         [Fact]
         public void Compose_with_connection_string()
-        {            
+        {
             string input = "$(ConnectionString)";
             string expected = "Data Source=127.0.0.1;Initial Catalog=MYDATABASE;Integrated Security=False;User ID=user1;Password=user1pass";
 
@@ -94,6 +94,25 @@ namespace SSMScripter.Tests.Runner
                 UserID = "user1",
                 Password = "user1pass",
                 IntegratedSecurity = false
+            };
+
+            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
+            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+
+            string result = processor.Compose(input, connstr);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void Compose_escapes_quotation_mark_in_values()
+        {
+            string input = "$(ConnectionString)";
+            string expected = @"Password=\""user1 pass\""";
+
+            SqlConnectionStringBuilder connstr = new SqlConnectionStringBuilder()
+            {
+                Password = "user1 pass",
             };
 
             IWindowsUser windowsUser = A.Fake<IWindowsUser>();

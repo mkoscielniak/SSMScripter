@@ -41,7 +41,10 @@ namespace SSMScripter.Runner
                 string val = null;
 
                 if (tokens.TryGetValue(tok, out val))
+                {
+                    val = val.Replace(@"""", @"\""");
                     return val;
+                }
 
                 return cap;
             };
