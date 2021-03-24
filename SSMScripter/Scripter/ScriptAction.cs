@@ -54,7 +54,7 @@ namespace SSMScripter.Scripter
             string scriptResult = null;
             if (!TryScriptIntoEditor(scripterInput, out scriptResult))
                 return scriptResult;
-            
+
             return "Success";
         }
 
@@ -73,7 +73,8 @@ namespace SSMScripter.Scripter
                 if (editor != null)
                 {
                     EditedLine line = editor.GetEditedLine();
-                    input = new ScripterParserInput(line.Line, line.CaretPos);
+                    int index = GetEditedLineIndex(line);
+                    input = new ScripterParserInput(line.Line, index);
                 }
             }
 
@@ -81,10 +82,19 @@ namespace SSMScripter.Scripter
         }
 
 
+        private int GetEditedLineIndex(EditedLine line)
+        {
+            if (line.Length == line.CaretPos)
+                return line.CaretPos - 1;
+
+            return line.CaretPos;
+        }
+
+
         private bool TryScriptIntoEditor(ScripterInput input, out string result)
         {
             result = null;
-            
+
             try
             {
                 StringCollection content;
@@ -92,7 +102,7 @@ namespace SSMScripter.Scripter
                 using (IServerConnection serverConn = _hostCtx.CloneCurrentConnection(input.Database))
                 {
                     serverConn.Connect();
-                    content = _scripter.Script(serverConn, input);                    ;
+                    content = _scripter.Script(serverConn, input);
                     serverConn.Disconnect();
                 }
 

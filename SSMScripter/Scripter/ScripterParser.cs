@@ -31,29 +31,41 @@ namespace SSMScripter.Scripter
             int first = FindFirstAcceptableCharPos(content, index);
             int last = FindLastAcceptableCharPos(content, index);
 
-            if (first == last)
+            if (first == -1 && last == -1 && content[index] == ' ')
+            {
+                first = FindFirstAcceptableCharPos(content, index - 1);
+                last = FindLastAcceptableCharPos(content, index - 1);
+            }
+
+            if (first == -1 && last == -1)
                 return error("Nothing found", result);
 
             string text = content.Substring(first, last - first + 1);
             result.Text = text;
 
             string[] parts = text.Split(_partsChars, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < parts.Length; i++)
+            {
+                parts[i] = parts[i].Trim(_partsTrim);
+                if (String.IsNullOrEmpty(parts[i]))
+                    return error("Unknown content format", result);
+            }
 
-            switch(parts.Length)
+            switch (parts.Length)
             {
                 case 0:
                     return error("Empty or null content", result);
                 case 1:
-                    result.Name = parts[0].Trim(_partsTrim);
+                    result.Name = parts[0];
                     return true;
                 case 2:
-                    result.Schema = parts[0].Trim(_partsTrim);
-                    result.Name = parts[1].Trim(_partsTrim);
+                    result.Schema = parts[0];
+                    result.Name = parts[1];
                     return true;
                 case 3:
-                    result.Database = parts[0].Trim(_partsTrim);
-                    result.Schema = parts[1].Trim(_partsTrim);
-                    result.Name = parts[2].Trim(_partsTrim);
+                    result.Database = parts[0];
+                    result.Schema = parts[1];
+                    result.Name = parts[2];
                     return true;
                 default:
                     return error("Unknown content format", result);
@@ -69,7 +81,10 @@ namespace SSMScripter.Scripter
 
         private int FindLastAcceptableCharPos(string input, int index)
         {
-            int pos = index;
+            int pos = -1;
+
+            if (index < 0 || index >= input.Length)
+                return pos;
 
             for (int i = index; i < input.Length; i++)
             {
@@ -85,7 +100,10 @@ namespace SSMScripter.Scripter
 
         private int FindFirstAcceptableCharPos(string input, int index)
         {
-            int pos = index;
+            int pos = -1;
+
+            if (index < 0 || index >= input.Length)
+                return pos;
 
             for (int i = index; i >= 0; i--)
             {

@@ -14,7 +14,7 @@ namespace SSMScripter.Scripter
             if (string.IsNullOrEmpty(content))
                 throw new ArgumentException("Content cannot be null or empty", "content");
             if (index < 0 || index >= content.Length)
-                throw new IndexOutOfRangeException("Index is out of range in givent content");
+                throw new IndexOutOfRangeException("Index is out of range in given content");
 
             Content = content;
             Index = index;

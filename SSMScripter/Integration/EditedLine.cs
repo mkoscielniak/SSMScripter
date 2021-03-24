@@ -15,5 +15,7 @@ namespace SSMScripter.Integration
             Line = line;
             CaretPos = caretPos;
         }
+
+        public int Length { get { return Line.Length; } }
     }
 }

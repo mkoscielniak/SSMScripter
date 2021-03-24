@@ -27,7 +27,7 @@ namespace SSMScripter.Tests.Scripter
         [InlineData("", 0, typeof(ArgumentException))]
         [InlineData("ABC", -1, typeof(IndexOutOfRangeException))]
         [InlineData("ABC", 3, typeof(IndexOutOfRangeException))]
-        
+
         public void Ctor_throws_on_incorrect_args(string input, int index, Type exceptionType)
         {
             Assert.Throws(exceptionType, () => new ScripterParserInput(input, index));
