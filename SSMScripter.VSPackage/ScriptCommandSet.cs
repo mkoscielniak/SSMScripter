@@ -19,7 +19,7 @@ using Microsoft.Win32;
 using SSMScripter.Runner;
 
 namespace SSMScripter.VSPackage
-{    
+{
     internal sealed class ScriptCommandSet
     {
         public const int CommandScriptId = 0x0100;
@@ -35,7 +35,7 @@ namespace SSMScripter.VSPackage
 
         private ScriptCommandSet(Package package)
         {
-            if (package == null)        
+            if (package == null)
                 throw new ArgumentNullException("package");
 
             _package = package;
@@ -55,7 +55,7 @@ namespace SSMScripter.VSPackage
             DTE2 dte = (DTE2)ServiceProvider.GetService(typeof(DTE));
             IHostContext hostCtx = new HostContext(dte);
             IWindowsUser windowsUser = new WindowsUser();
-            
+
             string registryMasterKey = Registry.CurrentUser.Name + "\\Software\\SSMScripter";
 
             IScripterParser scripterParser = new ScripterParser();
@@ -77,40 +77,25 @@ namespace SSMScripter.VSPackage
             private set;
         }
 
-        
-        private IServiceProvider ServiceProvider {  get { return _package; } }        
 
-        
+        private IServiceProvider ServiceProvider { get { return _package; } }
+
+
         public static void Initialize(Package package)
         {
             Instance = new ScriptCommandSet(package);
         }
-        
-        
-        private void MenuScriptCallback(object sender, EventArgs e)
+
+
+        private void RunAction(Func<string> workAction)
         {
             string result = String.Empty;
 
-            try
-            {                
-                result = _scriptAction.Execute();
-            }
-            catch(Exception ex)
-            {
-                result = ex.Message;
-            }
-
-            SetStatusBarText(result);            
-        }
-
-
-        private void MenuRunCallback(object sender, EventArgs e)
-        {
-            string result = String.Empty;
+            SetStatusBarText("Working");
 
             try
             {
-                result = _runAction.Execute();
+                result = workAction();
             }
             catch (Exception ex)
             {
@@ -121,9 +106,21 @@ namespace SSMScripter.VSPackage
         }
 
 
+        private void MenuScriptCallback(object sender, EventArgs e)
+        {
+            RunAction(_scriptAction.Execute);
+        }
+
+
+        private void MenuRunCallback(object sender, EventArgs e)
+        {
+            RunAction(_runAction.Execute);
+        }
+
+
         private void SetStatusBarText(string status)
         {
-            if(!String.IsNullOrEmpty(status))
+            if (!String.IsNullOrEmpty(status))
                 status = String.Format("SSMScripter: {0}", status);
 
             IVsStatusbar statusBar = (IVsStatusbar)ServiceProvider.GetService(typeof(SVsStatusbar));
