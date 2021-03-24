@@ -11,7 +11,20 @@ using Xunit;
 namespace SSMScripter.Tests.Runner
 {
     public class RunParamsProcessorTests
-    {
+    {        
+        private RunParamsProcessor CreateProcessor(IWindowsUser user)
+        {
+            return new RunParamsProcessor(user);
+        }
+
+
+        private RunParamsProcessor CreateProcessor()
+        {
+            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
+            return CreateProcessor(windowsUser);
+        }
+
+
         [Fact]
         public void Compose_when_user_password()
         {
@@ -27,8 +40,7 @@ namespace SSMScripter.Tests.Runner
                 IntegratedSecurity = false
             };
 
-            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
-            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+            RunParamsProcessor processor = CreateProcessor();
 
             string result = processor.Compose(input, connstr);
 
@@ -51,7 +63,7 @@ namespace SSMScripter.Tests.Runner
             IWindowsUser windowsUser = A.Fake<IWindowsUser>();
             A.CallTo(() => windowsUser.Name).Returns("user1");
 
-            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+            RunParamsProcessor processor = CreateProcessor(windowsUser);
 
             string result = processor.Compose(input, connstr);
 
@@ -73,8 +85,7 @@ namespace SSMScripter.Tests.Runner
                 IntegratedSecurity = false
             };
 
-            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
-            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+            RunParamsProcessor processor = CreateProcessor();
 
             string result = processor.Compose(input, connstr);
 
@@ -96,8 +107,7 @@ namespace SSMScripter.Tests.Runner
                 IntegratedSecurity = false
             };
 
-            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
-            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+            RunParamsProcessor processor = CreateProcessor();
 
             string result = processor.Compose(input, connstr);
 
@@ -115,8 +125,7 @@ namespace SSMScripter.Tests.Runner
                 Password = "user1 pass",
             };
 
-            IWindowsUser windowsUser = A.Fake<IWindowsUser>();
-            RunParamsProcessor processor = new RunParamsProcessor(windowsUser);
+            RunParamsProcessor processor = CreateProcessor();
 
             string result = processor.Compose(input, connstr);
 
