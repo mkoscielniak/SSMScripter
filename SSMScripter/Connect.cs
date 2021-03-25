@@ -19,13 +19,13 @@ namespace SSMScripter
         private DTE2 _app;
         private AddIn _addin;
         private Dictionary<string, ICommand> _commands;
-        
+
 
         public void OnConnection(object application, ext_ConnectMode connectMode, object addInInst, ref Array custom)
         {
             _app = (DTE2)application;
             _addin = (AddIn)addInInst;
-            
+
             _commands = CreateCommands()
                 .ToDictionary(cmd => String.Format("{0}.{1}", _addin.ProgID, cmd.Name));
 
@@ -38,7 +38,7 @@ namespace SSMScripter
 
 
         private IEnumerable<ICommand> CreateCommands()
-        {            
+        {
             IHostContext hostCtx = new HostContext(_app);
             IWindowsUser windowsUser = new WindowsUser();
 
@@ -87,7 +87,7 @@ namespace SSMScripter
                 {
                     //cannot find command
                 }
-            }            
+            }
         }
 
 
@@ -100,8 +100,9 @@ namespace SSMScripter
                 ICommand command = null;
                 if (_commands.TryGetValue(commandName, out command))
                 {
+                    _app.StatusBar.Text = "SSMScripter: Working";
                     string result = command.Execute() ?? "None";
-                    _app.StatusBar.Text = String.Format("{0}: {1}", command.Name, result);
+                    _app.StatusBar.Text = String.Format("SSMScripter: {0}", result);
                     handled = true;
                 }
             }
