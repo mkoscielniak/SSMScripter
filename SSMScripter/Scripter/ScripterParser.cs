@@ -10,7 +10,7 @@ namespace SSMScripter.Scripter
     {
         private readonly char[] _partsChars = new char[] { '.' };
         private readonly char[] _partsTrim = new char[] { '[', ']' };
-        private readonly char[] _additionalChars = new char[] { '[', ']', '.', '_' };
+        private readonly char[] _additionalChars = new char[] { '[', ']', '.', '_', '-' };
 
         public bool TryParse(ScripterParserInput input, out ScripterParserResult result)
         {

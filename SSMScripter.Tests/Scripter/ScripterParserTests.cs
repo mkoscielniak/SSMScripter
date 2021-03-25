@@ -12,6 +12,7 @@ namespace SSMScripter.Tests.Scripter
     {
         [Theory]
         [InlineData("[DB].[SCH].[OBJ]", 8, "DB", "SCH", "OBJ")]
+        [InlineData("[D-B].[SCH].[OBJ_1]", 8, "D-B", "SCH", "OBJ_1")]
         [InlineData("[SCH].[OBJ]", 5, (string)null, "SCH", "OBJ")]
         [InlineData("[OBJ]", 2, (string)null, (string)null, "OBJ")]
         [InlineData("[OBJ]", 4, (string)null, (string)null, "OBJ")]
