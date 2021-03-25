@@ -63,29 +63,45 @@ namespace SSMScripter.Scripter
         {
             input = null;
 
-            IResultGrid grid = _hostCtx.GetFocusedResultGrid();
-            if (grid != null)
-                input = new ScripterParserInput(grid.GetSelectedValue(), 0);
+            string value = String.Empty;
+            int index = -1;
 
-            if (input == null)
+            if (index == -1)
+            {
+                IResultGrid grid = _hostCtx.GetFocusedResultGrid();
+                if (grid != null)
+                {
+                    value = grid.GetSelectedValue();
+                    index = 0;
+                }
+            }
+
+            if (index == -1)
             {
                 IEditor editor = _hostCtx.GetCurrentEditor();
                 if (editor != null)
                 {
                     EditedLine line = editor.GetEditedLine();
-                    int index = GetEditedLineIndex(line);
-                    input = new ScripterParserInput(line.Line, index);
+                    value = line.Line;
+                    index = GetEditedLineIndex(line);
                 }
             }
 
-            return input != null;
+            if (String.IsNullOrEmpty(value))
+                return false;
+            if (index < 0 || index >= value.Length)
+                return false;
+
+            input = new ScripterParserInput(value, index);
+
+            return true;
         }
 
 
         private int GetEditedLineIndex(EditedLine line)
         {
             if (line.Length == line.CaretPos)
-                return line.CaretPos - 1;
+                return Math.Max(0, line.CaretPos - 1);
 
             return line.CaretPos;
         }
