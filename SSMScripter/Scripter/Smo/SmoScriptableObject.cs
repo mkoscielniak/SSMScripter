@@ -18,17 +18,24 @@ namespace SSMScripter.Scripter.Smo
         public abstract StringCollection Script(SmoScriptingContext context);
 
 
-        public void AddBatchSeparator(StringCollection output, SmoScriptingContext ctx)
+        protected void AddBatchSeparator(StringCollection output, SmoScriptingContext ctx)
         {
             output.Add(ctx.Connection.BatchSeparator);
             AddLineEnding(output);
         }
 
 
-        public void AddLineEnding(StringCollection output)
+        protected void AddLineEnding(StringCollection output)
         {
             output.Add(Environment.NewLine);
         }
 
+
+        protected void AddDatabaseContext(StringCollection output, SmoScriptingContext ctx)
+        {
+            string batch = String.Format("USE [{0}]", ctx.Connection.DatabaseName);
+            output.Add(batch);
+            AddLineEnding(output);
+        }
     }
 }

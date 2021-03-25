@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 
 namespace SSMScripter.Scripter.Smo
 {
@@ -17,9 +18,11 @@ namespace SSMScripter.Scripter.Smo
 
             options.IncludeDatabaseContext = context.ScriptDatabaseContext;
             
-            StringCollection scriptingResult = scripter.Script(new[] {ScriptedObject});
-            
+            StringCollection scriptingResult = scripter.Script(new[] {ScriptedObject});                       
+
             var result = new StringCollection();
+            
+            AddDatabaseContextIfNeeded(context, result, scriptingResult);
 
             foreach (string scriptedBatch in scriptingResult)
             {
@@ -29,6 +32,23 @@ namespace SSMScripter.Scripter.Smo
             }
 
             return result;
+        }
+        
+        private void AddDatabaseContextIfNeeded(SmoScriptingContext context, StringCollection output, StringCollection scriptingResult)
+        {
+            if (scriptingResult.Count == 0)
+                return;
+
+            string firstLine = scriptingResult[0];
+
+            if (String.IsNullOrEmpty(firstLine))
+                return;
+
+            if (firstLine.StartsWith("USE", StringComparison.InvariantCultureIgnoreCase))
+                return;
+
+            AddDatabaseContext(output, context);
+            AddLineEnding(output);
         }
     }
 }

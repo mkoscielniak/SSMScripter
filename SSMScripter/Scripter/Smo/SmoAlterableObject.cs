@@ -79,13 +79,5 @@ namespace SSMScripter.Scripter.Smo
         {
             output.Add(obj.ScriptHeader(true));
         }
-
-
-        private void AddDatabaseContext(StringCollection output, SmoScriptingContext ctx)
-        {
-            string batch = String.Format("USE [{0}]", ctx.Connection.DatabaseName);
-            output.Add(batch);
-            AddLineEnding(output);
-        }
     }
 }
