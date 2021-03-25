@@ -120,14 +120,10 @@ namespace SSMScripter.VSPackage
 
         private void SetStatusBarText(string status)
         {
-            if (!String.IsNullOrEmpty(status))
-                status = String.Format("SSMScripter: {0}", status);
-
+            status = String.IsNullOrEmpty(status) ? String.Empty : String.Format("SSMScripter: {0}", status);
             IVsStatusbar statusBar = (IVsStatusbar)ServiceProvider.GetService(typeof(SVsStatusbar));
-
-            int frozen;
-            statusBar.IsFrozen(out frozen);
-
+            
+            statusBar.IsFrozen(out int frozen);
             if (frozen != 0)
                 statusBar.FreezeOutput(0);
 
