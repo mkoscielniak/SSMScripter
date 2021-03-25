@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using MSmo = Microsoft.SqlServer.Management.Smo;
 
 namespace SSMScripter.Scripter.Smo
 {
@@ -13,10 +14,8 @@ namespace SSMScripter.Scripter.Smo
 
         public override StringCollection Script(SmoScriptingContext context)
         {
-            var scripter = new Microsoft.SqlServer.Management.Smo.Scripter(context.Server);
-            Microsoft.SqlServer.Management.Smo.ScriptingOptions options = scripter.Options;
-
-            options.IncludeDatabaseContext = context.ScriptDatabaseContext;
+            var scripter = new MSmo.Scripter(context.Server);
+            scripter.Options.IncludeDatabaseContext = context.ScriptDatabaseContext;
             
             StringCollection scriptingResult = scripter.Script(new[] {ScriptedObject});                       
 
