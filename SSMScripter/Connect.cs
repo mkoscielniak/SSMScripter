@@ -100,12 +100,29 @@ namespace SSMScripter
                 ICommand command = null;
                 if (_commands.TryGetValue(commandName, out command))
                 {
-                    _app.StatusBar.Text = "SSMScripter: Working";
-                    string result = command.Execute() ?? "None";
-                    _app.StatusBar.Text = String.Format("SSMScripter: {0}", result);
+                    SetStatusBarText("Working");
+                    string result = null;
+
+                    try
+                    {
+                        result = command.Execute() ?? "No result";
+                    }
+                    catch (Exception ex)
+                    {
+                        result = ex.Message;
+                    }
+
+                    SetStatusBarText(result);
                     handled = true;
                 }
             }
+        }
+
+
+        private void SetStatusBarText(string status)
+        {
+            status = String.IsNullOrEmpty(status) ? String.Empty : String.Format("SSMScripter: {0}", status);
+            _app.StatusBar.Text = status;
         }
 
 
